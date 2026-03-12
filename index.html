@@ -12,115 +12,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- OVERRIDES PARA FIDELIDADE TOTAL --- */
-        body { background-color: #2e363f !important; font-family: 'Open Sans', sans-serif; }
+        body { background-color: #2e363f !important; }
         
-        /* Cabeçalho e Logo */
-        #header h1 a { 
-            background: none; 
-            color: #fff; 
-            font-size: 24px; 
-            text-transform: uppercase; 
-            font-weight: bold; 
-            padding-top: 15px;
-        }
+        /* Dashboard Cards e Widgets */
+        .widget-box { background: #fff; border: 1px solid #cdcdcd; border-radius: 3px; margin-top: 16px; }
+        .widget-title { background: #efefef; border-bottom: 1px solid #cdcdcd; height: 36px; }
+        .widget-title span.icon { border-right: 1px solid #cdcdcd; padding: 9px 10px; float: left; opacity: 0.7; }
+        .widget-title h5 { float: left; font-size: 12px; font-weight: bold; padding: 10px; line-height: 12px; margin: 0; }
 
-        /* Barra de Busca Original */
-        #search { position: absolute; z-index: 25; top: 12px; right: 20px; }
-        #search input { 
-            background: #444; 
-            border: none; 
-            color: #fff; 
-            padding: 6px 15px; 
-            width: 200px; 
-            border-radius: 4px 0 0 4px;
-        }
-        #search button { 
-            background: #10b981; 
-            border: none; 
-            padding: 7px 15px; 
-            color: #fff; 
-            border-radius: 0 4px 4px 0;
-            transition: 0.3s;
-        }
-        #search button:hover { background: #059669; }
-
-        /* Menu Lateral (Efeitos de Hover e Estilo) */
-        #sidebar { width: 220px; float: left; position: relative; }
-        #sidebar ul li a { 
-            border-bottom: 1px solid #37414b; 
-            border-top: 1px solid #414d5c; 
-            color: #939da8; 
-            display: block; 
-            padding: 12px 20px; 
-            text-decoration: none;
-            transition: all 0.2s ease;
-        }
-        #sidebar ul li a:hover { 
-            background-color: #27a9e3 !important; 
-            color: #fff !important; 
-            padding-left: 28px !important;
-        }
-        #sidebar ul li.active a { 
-            background: #27a9e3; 
-            color: #fff; 
-            border-left: 5px solid #fff;
-        }
-
-        /* Dashboard Cards Estilizados */
-        .dashboard-card { 
-            background: #fff; 
-            border: 1px solid #ddd; 
-            border-radius: 8px; 
-            margin-bottom: 25px; 
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        .card-header { 
-            background: #fdfdfd; 
-            border-bottom: 1px solid #eee; 
-            padding: 15px 20px; 
-            border-radius: 8px 8px 0 0;
-        }
-        .card-header h5 { margin: 0; color: #333; font-size: 14px; text-transform: uppercase; }
-
-        /* Ações Rápidas (Efeito 3D ao passar o mouse) */
-        .quick-actions-modern { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
-            gap: 20px; 
-            padding: 20px;
-        }
+        /* Ações Rápidas Estilizadas */
+        .quick-actions-modern { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; padding: 15px; }
         .quick-action-card { 
-            border: 1px solid #e0e0e0; 
-            border-radius: 10px; 
-            padding: 25px 15px; 
-            text-align: center; 
-            cursor: pointer;
-            background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%);
-            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid #ddd; border-radius: 10px; padding: 20px; text-align: center; 
+            background: #f9f9f9; transition: all 0.3s; cursor: pointer; 
         }
-        .quick-action-card:hover { 
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-            border-color: #27a9e3;
-        }
-        .quick-action-card i { font-size: 32px; color: #27a9e3; margin-bottom: 15px; display: block; }
-        .quick-action-card span { font-weight: 600; color: #444; font-size: 13px; }
+        .quick-action-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: #27a9e3; }
+        .quick-action-card i { font-size: 28px; color: #27a9e3; margin-bottom: 10px; display: block; }
 
-        /* Status Items */
-        .status-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 20px; }
-        .status-item { padding: 20px; border-radius: 8px; color: #fff; text-align: center; transition: 0.3s; }
-        .status-item:hover { filter: brightness(1.1); transform: scale(1.02); }
-        .status-item strong { font-size: 30px; display: block; margin-bottom: 5px; }
-        .status-item span { font-size: 11px; text-transform: uppercase; font-weight: bold; }
+        /* Status Grid */
+        .status-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 15px; }
+        .status-item { padding: 15px; border-radius: 5px; color: #fff; text-align: center; }
+        .status-item strong { font-size: 24px; display: block; }
+        .bg_lo { background: #ff4b4b; } .bg_ly { background: #ffb848; }
+        .bg_lb { background: #27a9e3; } .bg_lg { background: #28b779; }
 
-        .bg_lo { background: #ff4b4b; } /* Vencidas */
-        .bg_ly { background: #ffb848; } /* Hoje */
-        .bg_lb { background: #27a9e3; } /* Amanhã */
-        .bg_lg { background: #28b779; } /* No Prazo */
-
-        /* Rodapé */
-        #footer { padding: 20px; text-align: center; color: #999; border-top: 1px solid #333; margin-top: 50px; }
+        /* Menu Lateral - PADRONIZADO (Igual ao de clientes) */
+        #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
+        #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
+        #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
     </style>
 </head>
 <body>
@@ -129,17 +48,11 @@
     <h1><a href="index.html">InforOS</a></h1>
 </div>
 
-<div id="search">
-    <input type="text" placeholder="Pesquisar OS ou Cliente...">
-    <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-</div>
-
 <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav">
-        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Painel</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-phone"></i> <span class="text">Suporte</span></a></li>
-        <li class="pull-right"><a href="#"><i class="fa-solid fa-bell"></i></a></li>
-        <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> <span class="text">Sair</span></a></li>
+        <li class="active"><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
+        <li class="dropdown"><a href="#"><i class="fa-solid fa-envelope"></i> <span class="text">Mensagens</span> <span class="label label-important">5</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
     </ul>
 </div>
 
@@ -161,60 +74,36 @@
 
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"><a href="index.html" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a> <a href="#" class="current">Painel</a></div>
+        <div id="breadcrumb"> <a href="index.html" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a></div>
     </div>
 
     <div class="container-fluid">
-        
-        <div class="dashboard-card">
-            <div class="card-header"><h5><i class="fa-solid fa-bolt"></i> Ações Rápidas</h5></div>
+        <div class="widget-box">
+            <div class="widget-title"> <span class="icon"><i class="fa-solid fa-bolt"></i></span><h5>Ações Rápidas</h5></div>
             <div class="quick-actions-modern">
                 <div class="quick-action-card" onclick="location.href='os.html'"><i class="fa-solid fa-tags"></i><span>Ordens de Serviço</span></div>
-                <div class="quick-action-card"><i class="fa-solid fa-cart-shopping"></i><span>Vendas</span></div>
                 <div class="quick-action-card" onclick="location.href='clientes.html'"><i class="fa-solid fa-user-group"></i><span>Clientes</span></div>
+                <div class="quick-action-card"><i class="fa-solid fa-cart-shopping"></i><span>Vendas</span></div>
                 <div class="quick-action-card"><i class="fa-solid fa-money-bill-wave"></i><span>Financeiro</span></div>
-                <div class="quick-action-card"><i class="fa-solid fa-chart-line"></i><span>Relatórios</span></div>
             </div>
         </div>
 
-        <div class="row-fluid">
-            <div class="span12">
-                <div class="dashboard-card">
-                    <div class="card-header"><h5><i class="fa-solid fa-clock"></i> Controle de Prazos</h5></div>
-                    <div class="status-grid">
-                        <div class="status-item bg_lo"><strong>629</strong><span>Vencidas</span></div>
-                        <div class="status-item bg_ly"><strong>10</strong><span>Hoje</span></div>
-                        <div class="status-item bg_lb"><strong>12</strong><span>Amanhã</span></div>
-                        <div class="status-item bg_lg"><strong>438</strong><span>No Prazo</span></div>
-                    </div>
-                </div>
+        <div class="widget-box">
+            <div class="widget-title"> <span class="icon"><i class="fa-solid fa-clock"></i></span><h5>Controle de Prazos</h5></div>
+            <div class="status-grid">
+                <div class="status-item bg_lo"><strong>629</strong><span>Vencidas</span></div>
+                <div class="status-item bg_ly"><strong>10</strong><span>Hoje</span></div>
+                <div class="status-item bg_lb"><strong>12</strong><span>Amanhã</span></div>
+                <div class="status-item bg_lg"><strong>438</strong><span>No Prazo</span></div>
             </div>
         </div>
-
-        <div class="dashboard-card">
-            <div class="card-header"><h5><i class="fa-solid fa-wallet"></i> Resumo Financeiro</h5></div>
-            <div style="padding: 20px; display: flex; gap: 20px;">
-                <div style="flex: 1; background: #e8f5e9; padding: 15px; border-left: 5px solid #28b779; border-radius: 4px;">
-                    <span style="color: #2e7d32; font-size: 12px; font-weight: bold;">RECEITAS</span><br>
-                    <span style="font-size: 20px; font-weight: bold; color: #1b5e20;">R$ 3.831,66</span>
-                </div>
-                <div style="flex: 1; background: #ffebee; padding: 15px; border-left: 5px solid #ff4b4b; border-radius: 4px;">
-                    <span style="color: #c62828; font-size: 12px; font-weight: bold;">DESPESAS</span><br>
-                    <span style="font-size: 20px; font-weight: bold; color: #b71c1c;">R$ 0,00</span>
-                </div>
-            </div>
-        </div>
-
     </div>
 </div>
 
-<div id="footer">
-    2026 © InforOS - Clone Fiel e Interativo
-</div>
+<div id="footer" class="span12"> 2026 © InforOS - Fidelidade Total Padronizada </div>
 
 <script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
 <script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
 <script src="https://teste.inforos.online/assets/js/matrix.js"></script>
-
 </body>
 </html>
