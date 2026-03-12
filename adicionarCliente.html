@@ -115,10 +115,38 @@
             </ul>
         </li>
 
-        <li><a href="termo-e-garantias.html"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
-        <li><a href="financeiro.html"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
-        <li><a href="relatorios.html"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
-        <li><a href="configuracoes.html"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="termo-e-garantias.html">Configurar</a></li>
+                <li><a href="#">Visualizar</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="financeiro.html">Faturas</a></li>
+                <li><a href="#">DRE</a></li>
+                <li><a href="#">Contas</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="relatorios.html">Clientes</a></li>
+                <li><a href="#">Vendas</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="configuracoes.html">Emitente</a></li>
+                <li><a href="#">Usuários</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
 
@@ -222,7 +250,7 @@
 
 <script>
     $(document).ready(function(){
-        // Efeito sanfona suave aprovado
+        // Efeito sanfona suave aprovado (Padrão InforOS)
         $('.submenu > a').off('click').on('click', function(e){
             e.preventDefault();
             var $li = $(this).parent('li');
