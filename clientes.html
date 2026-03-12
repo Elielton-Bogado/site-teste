@@ -2,58 +2,112 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>InforOS | Ordens de Serviço</title>
+    <title>InforOS | Clientes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-style.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-media.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>body { background-color: #2e363f !important; }</style>
+
+    <style>
+        body { background-color: #2e363f !important; }
+        .widget-box { background: #fff; border-radius: 12px; margin-top: 20px; border: 1px solid #ddd; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .widget-title { background: #f9fafb; border-bottom: 1px solid #ddd; padding: 12px; border-radius: 12px 12px 0 0; }
+        .widget-title h5 { margin: 0; color: #1e293b; font-weight: 700; }
+        .btn-success { background-color: #10b981 !important; border-color: #059669 !important; border-radius: 8px; padding: 8px 16px; }
+        
+        /* Ajuste do topo para não ficar torto */
+        #header h1 a { background: none; padding-top: 15px; }
+    </style>
 </head>
 <body>
 
-<div id="header"><h1><a href="index.html">InforOS</a></h1></div>
+<div id="header">
+    <h1><a href="index.html">InforOS</a></h1>
+</div>
+
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li><a title="" href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Inicio</span></a></li>
+        <li><a title="" href="#"><i class="fa-solid fa-phone"></i> <span class="text">Suporte</span></a></li>
+        <li class="pull-right"><a title="" href="#"><i class="fa-solid fa-bell"></i></a></li>
+        <li><a title="" href="#"><i class="fa-solid fa-right-from-bracket"></i> <span class="text">Sair</span></a></li>
+    </ul>
+</div>
 
 <div id="sidebar">
     <ul>
         <li><a href="index.html"><i class="fa-solid fa-house"></i> <span>Painel</span></a></li>
-        <li><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
-        <li class="active"><a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span></a></li>
+        <li class="active"><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span></a></li>
+        <li><a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
         <li><a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
     </ul>
 </div>
 
 <div id="content">
     <div id="content-header">
-        <h1>Ordens de Serviço</h1>
+        <div id="breadcrumb">
+            <a href="index.html" title="Ir para Painel" class="tip-bottom"><i class="fa-solid fa-house"></i> Painel</a>
+            <a href="clientes.html" class="current">Clientes</a>
+        </div>
     </div>
+
     <div class="container-fluid">
-        <div class="widget-box">
-            <div class="widget-title"><h5>Lista de OS</h5></div>
-            <div class="widget-content">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Nº OS</th>
-                            <th>Cliente</th>
-                            <th>Data Inicial</th>
-                            <th>Status</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>0001</td>
-                            <td>Cliente Exemplo</td>
-                            <td>12/03/2026</td>
-                            <td><span class="label label-warning">Aberto</span></td>
-                            <td><button class="btn btn-mini">Editar</button></td>
-                        </tr>
-                    </tbody>
-                </table>
+        <div class="row-fluid">
+            <div class="span12">
+                <div style="margin-top: 15px;">
+                    <a href="#" class="btn btn-success"><i class="fa-solid fa-plus"></i> Adicionar Cliente</a>
+                </div>
+
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <h5><i class="fa-solid fa-user-group"></i> Clientes</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Documento</th>
+                                    <th>Telefone</th>
+                                    <th>Email</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Cliente de Teste</td>
+                                    <td>000.000.000-00</td>
+                                    <td>(00) 00000-0000</td>
+                                    <td>exemplo@email.com</td>
+                                    <td style="text-align: center;">
+                                        <button class="btn btn-info btn-mini"><i class="fa-solid fa-eye"></i></button>
+                                        <button class="btn btn-danger btn-mini"><i class="fa-solid fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
+<div class="row-fluid">
+    <div id="footer" class="span12">2026 © InforOS - Sistema de Gestão</div>
+</div>
+
+<script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
+<script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
 </body>
 </html>
