@@ -12,81 +12,132 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        body { background-color: #2e363f !important; }
+        /* --- OVERRIDES PARA FIDELIDADE TOTAL --- */
+        body { background-color: #2e363f !important; font-family: 'Open Sans', sans-serif; }
         
-        /* --- EFEITOS DE HOVER (PASSAR O MOUSE) --- */
-        
-        /* Efeito nos Cartões de Ações Rápidas */
-        .quick-action-card { 
-            background: #f8fafc; 
-            border-radius: 10px; 
-            padding: 15px; 
-            text-align: center; 
-            border: 1px solid #e2e8f0; 
-            transition: all 0.3s ease; /* Cria o efeito de animação suave */
-            cursor: pointer;
+        /* Cabeçalho e Logo */
+        #header h1 a { 
+            background: none; 
+            color: #fff; 
+            font-size: 24px; 
+            text-transform: uppercase; 
+            font-weight: bold; 
+            padding-top: 15px;
         }
 
-        .quick-action-card:hover { 
-            background: #ffffff; 
-            transform: translateY(-5px); /* Faz o botão "subir" levemente */
-            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Cria uma sombra ao fundo */
-            border-color: #3b82f6;
+        /* Barra de Busca Original */
+        #search { position: absolute; z-index: 25; top: 12px; right: 20px; }
+        #search input { 
+            background: #444; 
+            border: none; 
+            color: #fff; 
+            padding: 6px 15px; 
+            width: 200px; 
+            border-radius: 4px 0 0 4px;
         }
-
-        /* Efeito nos itens de Status (Vencidas, Hoje, etc) */
-        .status-item { 
-            border-radius: 8px; 
-            padding: 15px 10px; 
-            text-align: center; 
-            color: white; 
-            transition: opacity 0.2s; 
+        #search button { 
+            background: #10b981; 
+            border: none; 
+            padding: 7px 15px; 
+            color: #fff; 
+            border-radius: 0 4px 4px 0;
+            transition: 0.3s;
         }
+        #search button:hover { background: #059669; }
 
-        .status-item:hover { 
-            opacity: 0.85; /* Dá um efeito de "brilho" ao encostar */
-            cursor: default;
+        /* Menu Lateral (Efeitos de Hover e Estilo) */
+        #sidebar { width: 220px; float: left; position: relative; }
+        #sidebar ul li a { 
+            border-bottom: 1px solid #37414b; 
+            border-top: 1px solid #414d5c; 
+            color: #939da8; 
+            display: block; 
+            padding: 12px 20px; 
+            text-decoration: none;
+            transition: all 0.2s ease;
         }
-
-        /* Efeito no Menu Lateral */
-        #sidebar ul li a { transition: all 0.2s; }
         #sidebar ul li a:hover { 
             background-color: #27a9e3 !important; 
-            color: white !important; 
-            padding-left: 25px !important; /* Efeito do menu "esticar" para a direita */
+            color: #fff !important; 
+            padding-left: 28px !important;
+        }
+        #sidebar ul li.active a { 
+            background: #27a9e3; 
+            color: #fff; 
+            border-left: 5px solid #fff;
         }
 
-        /* Estilo Geral dos Cards */
-        .dashboard-card { background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #ddd; }
-        .card-header h5 { margin: 0 0 15px 0; font-size: 16px; font-weight: 700; border-bottom: 1px solid #eee; padding-bottom: 10px; }
-        
-        .quick-actions-modern { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
-        .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; }
-        .status-item strong { font-size: 22px; display: block; }
+        /* Dashboard Cards Estilizados */
+        .dashboard-card { 
+            background: #fff; 
+            border: 1px solid #ddd; 
+            border-radius: 8px; 
+            margin-bottom: 25px; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .card-header { 
+            background: #fdfdfd; 
+            border-bottom: 1px solid #eee; 
+            padding: 15px 20px; 
+            border-radius: 8px 8px 0 0;
+        }
+        .card-header h5 { margin: 0; color: #333; font-size: 14px; text-transform: uppercase; }
 
-        /* Cores */
-        .bg_lo { background-color: #ef4444; } 
-        .bg_ly { background-color: #f59e0b; } 
-        .bg_lb { background-color: #3b82f6; } 
-        .bg_lg { background-color: #10b981; }
+        /* Ações Rápidas (Efeito 3D ao passar o mouse) */
+        .quick-actions-modern { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
+            gap: 20px; 
+            padding: 20px;
+        }
+        .quick-action-card { 
+            border: 1px solid #e0e0e0; 
+            border-radius: 10px; 
+            padding: 25px 15px; 
+            text-align: center; 
+            cursor: pointer;
+            background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%);
+            transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+        .quick-action-card:hover { 
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+            border-color: #27a9e3;
+        }
+        .quick-action-card i { font-size: 32px; color: #27a9e3; margin-bottom: 15px; display: block; }
+        .quick-action-card span { font-weight: 600; color: #444; font-size: 13px; }
 
-        #search { position: absolute; z-index: 25; top: 10px; right: 10px; }
-        #search input { padding: 5px 10px; border-radius: 5px 0 0 5px; border: 1px solid #ccc; }
-        #search button { border: none; padding: 6px 12px; border-radius: 0 5px 5px 0; background: #10b981; color: white; }
+        /* Status Items */
+        .status-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; padding: 20px; }
+        .status-item { padding: 20px; border-radius: 8px; color: #fff; text-align: center; transition: 0.3s; }
+        .status-item:hover { filter: brightness(1.1); transform: scale(1.02); }
+        .status-item strong { font-size: 30px; display: block; margin-bottom: 5px; }
+        .status-item span { font-size: 11px; text-transform: uppercase; font-weight: bold; }
+
+        .bg_lo { background: #ff4b4b; } /* Vencidas */
+        .bg_ly { background: #ffb848; } /* Hoje */
+        .bg_lb { background: #27a9e3; } /* Amanhã */
+        .bg_lg { background: #28b779; } /* No Prazo */
+
+        /* Rodapé */
+        #footer { padding: 20px; text-align: center; color: #999; border-top: 1px solid #333; margin-top: 50px; }
     </style>
 </head>
 <body>
 
-<div id="header"><h1><a href="index.html">InforOS</a></h1></div>
+<div id="header">
+    <h1><a href="index.html">InforOS</a></h1>
+</div>
 
 <div id="search">
-    <input type="text" placeholder="Pesquisar OS...">
+    <input type="text" placeholder="Pesquisar OS ou Cliente...">
     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
 </div>
 
 <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav">
-        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Painel</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-phone"></i> <span class="text">Suporte</span></a></li>
         <li class="pull-right"><a href="#"><i class="fa-solid fa-bell"></i></a></li>
         <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> <span class="text">Sair</span></a></li>
     </ul>
@@ -96,24 +147,33 @@
     <ul>
         <li class="active"><a href="index.html"><i class="fa-solid fa-house"></i> <span>Painel</span></a></li>
         <li><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span></a></li>
         <li><a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
         <li><a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
         <li><a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
     </ul>
 </div>
 
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"> <a href="#" class="tip-bottom"><i class="fa-solid fa-house"></i> Painel</a></div>
+        <div id="breadcrumb"><a href="index.html" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a> <a href="#" class="current">Painel</a></div>
     </div>
 
     <div class="container-fluid">
+        
         <div class="dashboard-card">
             <div class="card-header"><h5><i class="fa-solid fa-bolt"></i> Ações Rápidas</h5></div>
             <div class="quick-actions-modern">
-                <div class="quick-action-card" onclick="location.href='os.html'"><i class="fa-solid fa-tags" style="color:#3b82f6; font-size: 24px;"></i><br>Ordens de Serviço</div>
-                <div class="quick-action-card"><i class="fa-solid fa-cart-shopping" style="color:#10b981; font-size: 24px;"></i><br>Vendas</div>
-                <div class="quick-action-card"><i class="fa-solid fa-money-bill-wave" style="color:#f59e0b; font-size: 24px;"></i><br>Financeiro</div>
+                <div class="quick-action-card" onclick="location.href='os.html'"><i class="fa-solid fa-tags"></i><span>Ordens de Serviço</span></div>
+                <div class="quick-action-card"><i class="fa-solid fa-cart-shopping"></i><span>Vendas</span></div>
+                <div class="quick-action-card" onclick="location.href='clientes.html'"><i class="fa-solid fa-user-group"></i><span>Clientes</span></div>
+                <div class="quick-action-card"><i class="fa-solid fa-money-bill-wave"></i><span>Financeiro</span></div>
+                <div class="quick-action-card"><i class="fa-solid fa-chart-line"></i><span>Relatórios</span></div>
             </div>
         </div>
 
@@ -124,20 +184,37 @@
                     <div class="status-grid">
                         <div class="status-item bg_lo"><strong>629</strong><span>Vencidas</span></div>
                         <div class="status-item bg_ly"><strong>10</strong><span>Hoje</span></div>
+                        <div class="status-item bg_lb"><strong>12</strong><span>Amanhã</span></div>
                         <div class="status-item bg_lg"><strong>438</strong><span>No Prazo</span></div>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="dashboard-card">
+            <div class="card-header"><h5><i class="fa-solid fa-wallet"></i> Resumo Financeiro</h5></div>
+            <div style="padding: 20px; display: flex; gap: 20px;">
+                <div style="flex: 1; background: #e8f5e9; padding: 15px; border-left: 5px solid #28b779; border-radius: 4px;">
+                    <span style="color: #2e7d32; font-size: 12px; font-weight: bold;">RECEITAS</span><br>
+                    <span style="font-size: 20px; font-weight: bold; color: #1b5e20;">R$ 3.831,66</span>
+                </div>
+                <div style="flex: 1; background: #ffebee; padding: 15px; border-left: 5px solid #ff4b4b; border-radius: 4px;">
+                    <span style="color: #c62828; font-size: 12px; font-weight: bold;">DESPESAS</span><br>
+                    <span style="font-size: 20px; font-weight: bold; color: #b71c1c;">R$ 0,00</span>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 
-<div class="row-fluid">
-    <div id="footer" class="span12"> 2026 © InforOS - Clone Fiel com Efeitos </div>
+<div id="footer">
+    2026 © InforOS - Clone Fiel e Interativo
 </div>
 
 <script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
 <script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
 <script src="https://teste.inforos.online/assets/js/matrix.js"></script>
+
 </body>
 </html>
