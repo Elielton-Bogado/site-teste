@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>InforOS | Sistema de O.S</title>
+    <title>InforOS | Adicionar Cliente</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap.min.css">
@@ -14,30 +14,17 @@
     <style>
         body { background-color: #2e363f !important; }
         
-        /* Widgets e Tabelas Matrix - PADRÃO APROVADO */
+        /* Menu Lateral - PADRÃO SINCRONIZADO APROVADO */
+        #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
+        #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
+        #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
+
+        /* Widgets e Formulários */
         .widget-box { background: #fff; border: 1px solid #cdcdcd; border-radius: 3px; margin-top: 16px; }
         .widget-title { background: #efefef; border-bottom: 1px solid #cdcdcd; height: 36px; }
         .widget-title span.icon { border-right: 1px solid #cdcdcd; padding: 9px 10px; float: left; opacity: 0.7; }
         .widget-title h5 { float: left; font-size: 12px; font-weight: bold; padding: 10px; line-height: 12px; margin: 0; }
-        .buttons { float: right; margin: 5px 10px 0 0; }
-
-        /* DataTables (Filtros e Paginação) */
-        .dataTables_length { padding: 15px; float: left; }
-        .dataTables_filter { padding: 15px; float: right; text-align: right; }
-        .dataTables_filter input { border: 1px solid #ddd; padding: 5px; margin-left: 10px; border-radius: 3px; }
-        .fg-toolbar { background: #efefef; border-top: 1px solid #cdcdcd; padding: 10px; }
-
-        /* Cores de Ação e Status */
-        .btn-success { background-color: #28b779 !important; border-color: #28b779 !important; }
-        .btn-info { background-color: #27a9e3 !important; }
-        .btn-danger { background-color: #da4f49 !important; }
-        .label-warning { background-color: #f89406; } /* Aberto */
-        .label-success { background-color: #468847; } /* Faturado */
-
-        /* Menu Lateral - PADRONIZADO E SINCRONIZADO */
-        #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
-        #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
-        #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
+        .form-actions { background-color: #f5f5f5; border-top: 1px solid #e5e5e5; padding: 15px 20px; }
     </style>
 </head>
 <body>
@@ -57,12 +44,12 @@
 <div id="sidebar">
     <ul>
         <li><a href="index.html"><i class="fa-solid fa-house"></i> <span>Painel</span></a></li>
-        <li><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
+        <li class="active"><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
         <li><a href="#"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
         <li><a href="#"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
         <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
         <li><a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span></a></li>
-        <li class="active"><a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span></a></li>
+        <li><a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span></a></li>
         <li><a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
         <li><a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
         <li><a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
@@ -74,87 +61,51 @@
     <div id="content-header">
         <div id="breadcrumb"> 
             <a href="index.html" title="Home" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a>
-            <a href="os.html" class="current">Ordens de Serviço</a>
+            <a href="clientes.html">Clientes</a>
+            <a href="#" class="current">Adicionar</a>
         </div>
-        <h1>Ordens de Serviço</h1>
+        <h1>Adicionar Cliente</h1>
     </div>
 
     <div class="container-fluid">
         <div class="row-fluid">
             <div class="span12">
-                
-                <div style="margin-top: 15px;">
-                    <a href="#" class="btn btn-success"><i class="fa-solid fa-plus"></i> Adicionar OS</a>
-                </div>
-
                 <div class="widget-box">
-                    <div class="widget-title"> 
-                        <span class="icon"><i class="fa-solid fa-tags"></i></span>
-                        <h5>Ordens de Serviço</h5>
-                        <div class="buttons">
-                            <a title="Imprimir" class="btn btn-mini" href="#"><i class="fa-solid fa-print"></i> Imprimir</a>
-                        </div>
+                    <div class="widget-title">
+                        <span class="icon"><i class="fa-solid fa-user-plus"></i></span>
+                        <h5>Cadastro de Cliente</h5>
                     </div>
-                    
                     <div class="widget-content nopadding">
-                        <div class="dataTables_length">
-                            <label>Exibir 
-                                <select size="1" style="width: 60px;">
-                                    <option value="10" selected="selected">10</option>
-                                    <option value="25">25</option>
-                                    <option value="50">50</option>
-                                </select> registros
-                            </label>
-                        </div>
-                        <div class="dataTables_filter">
-                            <label>Pesquisar: <input type="text"></label>
-                        </div>
-
-                        <table class="table table-bordered data-table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 5%">Nº OS</th>
-                                    <th>Cliente</th>
-                                    <th>Data Inicial</th>
-                                    <th>Data Final</th>
-                                    <th>Status</th>
-                                    <th style="width: 15%">Ações</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>0001</td>
-                                    <td>Elielton Bogado</td>
-                                    <td>12/03/2026</td>
-                                    <td>15/03/2026</td>
-                                    <td><span class="label label-warning">Aberto</span></td>
-                                    <td style="text-align: center;">
-                                        <a href="#" class="btn btn-info btn-mini" title="Visualizar"><i class="fa-solid fa-eye"></i></a>
-                                        <a href="#" class="btn btn-success btn-mini" title="Editar"><i class="fa-solid fa-pencil"></i></a>
-                                        <a href="#" class="btn btn-danger btn-mini" title="Excluir"><i class="fa-solid fa-trash-can"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-
-                        <div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
-                            <div class="dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers">
-                                <a class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default ui-state-disabled">Primeiro</a>
-                                <a class="previous fg-button ui-button ui-state-default ui-state-disabled">Anterior</a>
-                                <span><a class="fg-button ui-button ui-state-default ui-state-disabled">1</a></span>
-                                <a class="next fg-button ui-button ui-state-default">Próximo</a>
-                                <a class="last ui-corner-tr ui-corner-br fg-button ui-button ui-state-default">Último</a>
+                        <form action="#" class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label">Nome*</label>
+                                <div class="controls"><input type="text" placeholder="Nome do Cliente" style="width: 80%"></div>
                             </div>
-                        </div>
+                            <div class="control-group">
+                                <label class="control-label">CPF/CNPJ*</label>
+                                <div class="controls"><input type="text" placeholder="000.000.000-00" style="width: 40%"></div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Telefone*</label>
+                                <div class="controls"><input type="text" placeholder="(00) 00000-0000" style="width: 40%"></div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Email</label>
+                                <div class="controls"><input type="email" placeholder="email@exemplo.com" style="width: 60%"></div>
+                            </div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-success"><i class="fa-solid fa-check"></i> Salvar</button>
+                                <a href="clientes.html" class="btn btn-default"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
 </div>
 
-<div id="footer" class="span12"> 2026 © InforOS - Sistema de Gestão </div>
+<div id="footer" class="span12"> 2026 © InforOS - Fidelidade Total </div>
 
 <script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
 <script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
