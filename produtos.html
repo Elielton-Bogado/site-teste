@@ -14,22 +14,24 @@
     <style>
         body { background-color: #2e363f !important; }
         
-        /* MENU LATERAL PADRONIZADO E SINCRONIZADO */
+        /* MENU LATERAL PADRONIZADO E SINCRONIZADO (11 ITENS) */
         #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
         #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
         #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
 
-        /* EFEITO DE SUBMENU (ABRIR E FECHAR) - FIDELIDADE AO VÍDEO */
+        /* EFEITO DE ABERTURA SUAVE (ACCORDION) - FIDELIDADE AO VÍDEO */
         #sidebar li.submenu ul { 
-            display: none; /* Fechado por padrão */
+            display: none; /* Fechado por padrão para animação inicial */
             background: #2e363f; 
             list-style: none;
             margin: 0;
             padding: 0;
         }
+        /* Classe que força a exibição imediata se necessário (estilo original) */
         #sidebar li.submenu.open ul { 
-            display: block; /* Abre quando tem a classe .open */
+            display: block; 
         }
+        
         #sidebar li.submenu ul li a { 
             padding: 10px 15px 10px 45px !important; 
             font-size: 12px; 
@@ -38,7 +40,7 @@
         }
         #sidebar li.submenu ul li.active a { color: #fff !important; background: #27a9e3 !important; }
 
-        /* Seta Vermelha conforme a imagem enviada */
+        /* Badge Vermelha conforme print e vídeo */
         .label-submenu { 
             background-color: #ff5b57 !important; 
             padding: 2px 5px; 
@@ -65,7 +67,6 @@
         }
         .btn-filter { background-color: #27a9e3; color: white; border: none; padding: 0 20px; height: 28px; font-weight: bold; align-self: flex-end; cursor: pointer; }
 
-        .btn-success { background-color: #28b779 !important; border-color: #28b779 !important; }
         .badge-venda { color: #16a34a; font-weight: bold; }
     </style>
 </head>
@@ -123,7 +124,7 @@
 
     <div class="container-fluid">
         <div style="margin-top: 15px;">
-            <a href="adicionarProduto.html" class="btn btn-success"><i class="fa-solid fa-plus"></i> Novo Produto</a>
+            <a href="adicionarProduto.html" class="btn btn-success" style="background-color: #28b779 !important;"><i class="fa-solid fa-plus"></i> Novo Produto</a>
         </div>
 
         <div class="widget-box">
@@ -178,7 +179,7 @@
                             <td>0</td>
                             <td>R$ 455,00</td>
                             <td style="text-align: center;">
-                                <a href="#" class="btn btn-info btn-mini"><i class="fa-solid fa-pencil"></i></a>
+                                <a href="#" class="btn btn-info btn-mini" style="background-color: #27a9e3 !important;"><i class="fa-solid fa-pencil"></i></a>
                                 <a href="#" class="btn btn-mini"><i class="fa-solid fa-bars"></i></a>
                             </td>
                         </tr>
@@ -193,18 +194,27 @@
 
 <script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
 <script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
+
 <script>
     $(document).ready(function(){
+        // Garante que o item ativo carregue aberto suavemente
+        $('.submenu.open ul').show();
+
         $('.submenu > a').click(function(e){
             e.preventDefault();
             var submenu = $(this).siblings('ul');
             var li = $(this).parents('li');
+            
             if(li.hasClass('open')) {
-                li.removeClass('open');
-                submenu.slideUp();
+                submenu.slideUp(250, function(){
+                    li.removeClass('open');
+                });
             } else {
+                // Fecha outros submenus abertos (opcional, para efeito sanfona puro)
+                // $('#sidebar li.submenu.open ul').slideUp(250).parents('li').removeClass('open');
+                
                 li.addClass('open');
-                submenu.slideDown();
+                submenu.slideDown(250);
             }
         });
     });
