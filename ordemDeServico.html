@@ -226,13 +226,18 @@
 
 <script>
     $(document).ready(function(){
+        // Garante que o item marcado como 'open' no HTML carregue aberto suavemente
         $('.submenu.open ul').show();
+
         $('.submenu > a').off('click').on('click', function(e){
             e.preventDefault();
             var $li = $(this).parent('li');
             var $submenu = $li.find('ul');
+            
             if($li.hasClass('open')) {
-                $submenu.slideUp(300, function(){ $li.removeClass('open'); });
+                $submenu.slideUp(300, function(){
+                    $li.removeClass('open');
+                });
             } else {
                 $li.addClass('open');
                 $submenu.stop(true, true).slideDown(300);
