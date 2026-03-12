@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>InforOS | Adicionar Serviço</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-style.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-media.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { background-color: #2e363f !important; }
+        
+        /* MENU LATERAL PADRONIZADO E SINCRONIZADO (11 ITENS) */
+        #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
+        #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
+        #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
+
+        /* AJUSTES DE FIDELIDADE AO FORMULÁRIO MAPOS/MATRIX */
+        .widget-box { background: #fff; border: 1px solid #cdcdcd; border-radius: 3px; margin-top: 16px; }
+        .widget-title { background: #efefef; border-bottom: 1px solid #cdcdcd; height: 36px; }
+        .widget-title span.icon { border-right: 1px solid #cdcdcd; padding: 9px 10px; float: left; opacity: 0.7; }
+        .widget-title h5 { float: left; font-size: 12px; font-weight: bold; padding: 10px; line-height: 12px; margin: 0; }
+        
+        /* Estilo das Abas (Tabs) */
+        .widget-title .nav-tabs { border: 0; display: block; float: left; margin: 0; }
+        .widget-title .nav-tabs li { margin: 0; border-right: 1px solid #cdcdcd; }
+        .widget-title .nav-tabs li a { border: 0; border-radius: 0; padding: 10px 15px; line-height: 16px; color: #666; }
+        .widget-title .nav-tabs li.active a { background-color: #fff; color: #333; font-weight: bold; }
+
+        .form-horizontal .control-group { border-top: 1px solid #ffffff; border-bottom: 1px solid #eeeeee; margin-bottom: 0; }
+        .form-horizontal .control-label { 
+            padding-top: 15px; width: 180px; background-color: #f9f9f9; 
+            border-right: 1px solid #eeeeee; font-weight: bold; text-align: right;
+        }
+        .form-horizontal .controls { margin-left: 200px; padding: 8px 0; }
+        .form-actions { background-color: #f5f5f5; border-top: 1px solid #e5e5e5; margin: 0; padding: 20px 20px 20px 200px; }
+        
+        input[type="text"], select { border-radius: 0 !important; box-shadow: none !important; border: 1px solid #d5d5d5; }
+        .required { color: #b94a48; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div id="header"><h1><a href="index.html">InforOS</a></h1></div>
+
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
+        <li class="dropdown"><a href="#"><i class="fa-solid fa-envelope"></i> <span class="text">Mensagens</span> <span class="label label-important">5</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
+    </ul>
+</div>
+
+<div id="sidebar">
+    <ul>
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span>Painel</span></a></li>
+        <li><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
+        <li><a href="equipamentos.html"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
+        <li class="active"><a href="servicos.html"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
+        <li><a href="compras.html"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
+        <li><a href="produtos.html"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span></a></li>
+        <li><a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span></a></li>
+        <li><a href="termo-e-garantias.html"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
+        <li><a href="financeiro.html"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
+        <li><a href="relatorios.html"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
+        <li><a href="configuracoes.html"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
+    </ul>
+</div>
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> 
+            <a href="index.html" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="servicos.html">Serviços</a>
+            <a href="#" class="current">Adicionar</a>
+        </div>
+        <h1>Adicionar Serviço</h1>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title">
+                        <ul class="nav nav-tabs">
+                            <li><a href="servicos.html"><i class="fa-solid fa-list"></i> Listar Serviços</a></li>
+                            <li class="active"><a href="#"><i class="fa-solid fa-plus"></i> Adicionar Novo</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <form action="#" id="formServico" class="form-horizontal">
+                            
+                            <div class="control-group">
+                                <label for="nome" class="control-label">Nome do Serviço<span class="required">*</span></label>
+                                <div class="controls">
+                                    <input id="nome" type="text" name="nome" placeholder="Ex: Formatação, Limpeza Preventiva" style="width: 450px" />
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label for="preco" class="control-label">Preço<span class="required">*</span></label>
+                                <div class="controls">
+                                    <input id="preco" type="text" name="preco" placeholder="0.00" style="width: 150px" />
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label for="descricao" class="control-label">Descrição</label>
+                                <div class="controls">
+                                    <input id="descricao" type="text" name="descricao" placeholder="Breve descrição do serviço" style="width: 450px" />
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label for="garantia" class="control-label">Garantia (Dias)</label>
+                                <div class="controls">
+                                    <input id="garantia" type="text" name="garantia" placeholder="Ex: 90" style="width: 100px" />
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">Cadastrado por</label>
+                                <div class="controls">
+                                    <input type="text" value="Administrador" readonly style="width: 250px; background: #eee;" />
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                                <a href="servicos.html" class="btn btn-default"><i class="fa-solid fa-backward"></i> Voltar</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer" class="span12"> 2026 © InforOS - Fidelidade Total </div>
+
+<script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
+<script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
+<script src="https://teste.inforos.online/assets/js/matrix.js"></script>
+
+</body>
+</html>
