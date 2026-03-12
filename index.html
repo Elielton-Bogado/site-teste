@@ -20,7 +20,6 @@
         .widget-title span.icon { border-right: 1px solid #cdcdcd; padding: 9px 10px; float: left; opacity: 0.7; }
         .widget-title h5 { float: left; font-size: 12px; font-weight: bold; padding: 10px; line-height: 12px; margin: 0; }
 
-        /* Ações Rápidas Estilizadas */
         .quick-actions-modern { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 15px; padding: 15px; }
         .quick-action-card { 
             border: 1px solid #ddd; border-radius: 10px; padding: 20px; text-align: center; 
@@ -29,17 +28,44 @@
         .quick-action-card:hover { transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-color: #27a9e3; }
         .quick-action-card i { font-size: 28px; color: #27a9e3; margin-bottom: 10px; display: block; }
 
-        /* Status Grid */
         .status-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; padding: 15px; }
         .status-item { padding: 15px; border-radius: 5px; color: #fff; text-align: center; }
         .status-item strong { font-size: 24px; display: block; }
         .bg_lo { background: #ff4b4b; } .bg_ly { background: #ffb848; }
         .bg_lb { background: #27a9e3; } .bg_lg { background: #28b779; }
 
-        /* Menu Lateral - PADRONIZADO (Igual ao de clientes) */
+        /* MENU LATERAL - PADRONIZADO E INTERATIVO */
         #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
         #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
         #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
+
+        /* ESTILO DO SUBMENU (FECHADO POR PADRÃO) */
+        #sidebar li.submenu ul { 
+            display: none; 
+            background: #3d4751 !important; /* Profundidade visual */
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        #sidebar li.submenu ul li a { 
+            padding: 10px 15px 10px 45px !important; 
+            font-size: 12px; 
+            color: #bdc4cc !important; 
+            border-left: none !important;
+        }
+        #sidebar li.submenu ul li a:hover { background: #27a9e3 !important; color: #fff !important; padding-left: 50px !important; }
+
+        /* Seta Vermelha Interativa */
+        .label-submenu { 
+            background-color: #ff5b57 !important; 
+            padding: 2px 5px; 
+            border-radius: 3px; 
+            float: right; 
+            margin-right: 15px;
+            margin-top: 2px;
+            color: white;
+            font-size: 10px;
+        }
     </style>
 </head>
 <body>
@@ -63,15 +89,65 @@
         <li><a href="equipamentos.html"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
         <li><a href="servicos.html"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
         <li><a href="compras.html"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
-        <li><a href="produtos.html"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span></a></li>
-        <li><a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span></a></li>
-        <li><a href="termo-e-garantias.html"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
-        <li><a href="financeiro.html"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
-        <li><a href="relatorios.html"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
-        <li><a href="configuraçoes.html"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
+        
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="produtos.html">Cadastrados</a></li>
+                <li><a href="#">Movimentação</a></li>
+                <li><a href="#">Consumo Interno</a></li>
+                <li><a href="#">Grupos</a></li>
+                <li><a href="#">Listas de Preços</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="os.html">Todas / Trabalhando</a></li>
+                <li><a href="#">Entrada</a></li>
+                <li><a href="#">Orçamento</a></li>
+                <li><a href="#">Aberto</a></li>
+                <li><a href="#">Andamento</a></li>
+                <li><a href="#">Finalizado</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="termo-e-garantias.html">Configurar</a></li>
+                <li><a href="#">Visualizar</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="financeiro.html">Faturas</a></li>
+                <li><a href="#">DRE</a></li>
+                <li><a href="#">Contas</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="relatorios.html">Clientes</a></li>
+                <li><a href="#">Equipamentos</a></li>
+                <li><a href="#">Vendas</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="configuracoes.html">Emitente</a></li>
+                <li><a href="#">Filiais</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
-
 
 <div id="content">
     <div id="content-header">
@@ -105,6 +181,24 @@
 
 <script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
 <script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
-<script src="https://teste.inforos.online/assets/js/matrix.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('.submenu > a').click(function(e){
+            e.preventDefault();
+            var submenu = $(this).siblings('ul');
+            var li = $(this).parents('li');
+            
+            if(li.hasClass('open')) {
+                submenu.slideUp(250, function(){
+                    li.removeClass('open');
+                });
+            } else {
+                li.addClass('open');
+                submenu.slideDown(250);
+            }
+        });
+    });
+</script>
 </body>
 </html>
