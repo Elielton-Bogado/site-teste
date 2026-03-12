@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-media.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style> 
+    <style>
         body { background-color: #2e363f !important; }
         
         /* ===========================================================
@@ -93,11 +93,7 @@
         <li><a href="compras.html"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
         
         <li class="submenu open active">
-            <a href="#">
-                <i class="fa-solid fa-basket-shopping"></i> 
-                <span>Produtos</span> 
-                <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span>
-            </a>
+            <a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
                 <li class="active"><a href="produtos.html">Cadastrados</a></li>
                 <li><a href="#">Movimentação</a></li>
@@ -107,22 +103,49 @@
         </li>
 
         <li class="submenu">
-            <a href="#">
-                <i class="fa-solid fa-tags"></i> 
-                <span>Ordens de Serviço</span> 
-                <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span>
-            </a>
+            <a href="#"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
                 <li><a href="os.html">Todas / Trabalhando</a></li>
                 <li><a href="#">Entrada</a></li>
+                <li><a href="#">Orçamento</a></li>
                 <li><a href="#">Finalizado</a></li>
             </ul>
         </li>
 
-        <li><a href="termo-e-garantias.html"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
-        <li><a href="financeiro.html"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
-        <li><a href="relatorios.html"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
-        <li><a href="configuracoes.html"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="termo-e-garantias.html">Configurar</a></li>
+                <li><a href="#">Visualizar</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="financeiro.html">Faturas</a></li>
+                <li><a href="#">DRE</a></li>
+                <li><a href="#">Contas</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="relatorios.html">Clientes</a></li>
+                <li><a href="#">Vendas</a></li>
+                <li><a href="#">Estoque</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="configuracoes.html">Emitente</a></li>
+                <li><a href="#">Usuários</a></li>
+                <li><a href="#">Auditoria</a></li>
+            </ul>
+        </li>
     </ul>
 </div>
 
@@ -210,7 +233,7 @@
 
 <script>
     $(document).ready(function(){
-        // Garante que o item marcado como 'open' no HTML carregue aberto suavemente
+        // Força a exibição imediata (suave) se estiver marcado como open no carregamento
         $('.submenu.open ul').show();
 
         $('.submenu > a').off('click').on('click', function(e){
@@ -223,9 +246,6 @@
                     $li.removeClass('open');
                 });
             } else {
-                // Se quiser fechar os outros ao abrir um novo (sanfona pura), descomente a linha abaixo:
-                // $('#sidebar li.submenu.open ul').slideUp(300).parent().removeClass('open');
-                
                 $li.addClass('open');
                 $submenu.stop(true, true).slideDown(300);
             }
