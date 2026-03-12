@@ -19,28 +19,40 @@
         #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
         #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
 
-        /* EFEITO DE ABERTURA SUAVE (ACCORDION) - FIDELIDADE AO VÍDEO */
+        /* EFEITO DE SUBMENU COM FUNDO MAIS CLARO (PROFUNDIDADE) */
         #sidebar li.submenu ul { 
-            display: none; /* Fechado por padrão para animação inicial */
-            background: #2e363f; 
+            display: none; 
+            background: #3d4751 !important; /* Fundo mais claro para destaque profissional */
             list-style: none;
             margin: 0;
             padding: 0;
-        }
-        /* Classe que força a exibição imediata se necessário (estilo original) */
-        #sidebar li.submenu.open ul { 
-            display: block; 
+            border-bottom: 1px solid #282e36;
         }
         
+        #sidebar li.submenu.open > a { 
+            background: #2e363f !important; 
+        }
+
         #sidebar li.submenu ul li a { 
             padding: 10px 15px 10px 45px !important; 
             font-size: 12px; 
-            color: #939da8; 
+            color: #bdc4cc !important; /* Cor de texto ajustada para o fundo mais claro */
+            background: transparent !important;
             border-left: none !important;
         }
-        #sidebar li.submenu ul li.active a { color: #fff !important; background: #27a9e3 !important; }
+        
+        #sidebar li.submenu ul li.active a { 
+            color: #fff !important; 
+            background: #27a9e3 !important; 
+        }
 
-        /* Badge Vermelha conforme print e vídeo */
+        #sidebar li.submenu ul li a:hover { 
+            background: #27a9e3 !important; 
+            color: #fff !important; 
+            padding-left: 50px !important; 
+        }
+
+        /* Badge Vermelha original */
         .label-submenu { 
             background-color: #ff5b57 !important; 
             padding: 2px 5px; 
@@ -197,7 +209,7 @@
 
 <script>
     $(document).ready(function(){
-        // Garante que o item ativo carregue aberto suavemente
+        // Inicializa com submenu aberto suavemente
         $('.submenu.open ul').show();
 
         $('.submenu > a').click(function(e){
@@ -210,9 +222,6 @@
                     li.removeClass('open');
                 });
             } else {
-                // Fecha outros submenus abertos (opcional, para efeito sanfona puro)
-                // $('#sidebar li.submenu.open ul').slideUp(250).parents('li').removeClass('open');
-                
                 li.addClass('open');
                 submenu.slideDown(250);
             }
