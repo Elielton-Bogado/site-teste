@@ -14,15 +14,17 @@
     <style>
         body { background-color: #2e363f !important; }
         
-        /* MENU LATERAL PADRONIZADO E SINCRONIZADO (11 ITENS) */
+        /* ===========================================================
+           NOVO PADRÃO DE MENU LATERAL (APROVADO)
+           =========================================================== */
         #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
         #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
         #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
 
-        /* SUBMENU COM FUNDO ESCURO PROFISSIONAL (PROFUNDIDADE) */
+        /* Submenu com fundo escuro para profundidade profissional */
         #sidebar li.submenu ul { 
             display: none; 
-            background: #252b32 !important; /* Cor escura fiel ao original (image_0159fa.png) */
+            background: #252b32 !important; 
             list-style: none;
             margin: 0;
             padding: 0;
@@ -30,9 +32,7 @@
             overflow: hidden;
         }
         
-        #sidebar li.submenu.open > a { 
-            background: #2e363f !important; 
-        }
+        #sidebar li.submenu.open > a { background: #2e363f !important; }
 
         #sidebar li.submenu ul li a { 
             padding: 10px 15px 10px 45px !important; 
@@ -42,18 +42,10 @@
             border-left: none !important;
         }
         
-        #sidebar li.submenu ul li.active a { 
-            color: #fff !important; 
-            background: #27a9e3 !important; 
-        }
+        #sidebar li.submenu ul li.active a { color: #fff !important; background: #27a9e3 !important; }
+        #sidebar li.submenu ul li a:hover { background: #27a9e3 !important; color: #fff !important; padding-left: 50px !important; }
 
-        #sidebar li.submenu ul li a:hover { 
-            background: #27a9e3 !important; 
-            color: #fff !important; 
-            padding-left: 50px !important; 
-        }
-
-        /* Badge Vermelha original conforme solicitado */
+        /* Badge Vermelha Interativa (Seta) */
         .label-submenu { 
             background-color: #ff5b57 !important; 
             padding: 2px 5px; 
@@ -65,7 +57,7 @@
             font-size: 10px;
         }
 
-        /* Widgets Matrix */
+        /* Widgets e Listagem Matrix */
         .widget-box { background: #fff; border: 1px solid #cdcdcd; border-radius: 3px; margin-top: 20px; overflow: hidden; }
         .widget-title { background: #efefef; border-bottom: 1px solid #cdcdcd; height: 36px; display: flex; align-items: center; justify-content: space-between; }
         .widget-title span.icon { border-right: 1px solid #cdcdcd; padding: 9px 10px; opacity: 0.7; }
@@ -74,9 +66,7 @@
         .filter-container { padding: 15px; background: #fff; display: flex; flex-wrap: wrap; gap: 10px; }
         .filter-group { flex: 1 1 180px; display: flex; flex-direction: column; }
         .filter-group label { font-weight: bold; color: #555; font-size: 11px; margin-bottom: 3px; }
-        .filter-group input, .filter-group select { 
-            width: 100% !important; border-radius: 0; border: 1px solid #d5d5d5; padding: 4px 8px; height: 28px; box-sizing: border-box;
-        }
+        .filter-group input, .filter-group select { width: 100% !important; border-radius: 0; border: 1px solid #d5d5d5; padding: 4px 8px; height: 28px; box-sizing: border-box; }
         .btn-filter { background-color: #27a9e3; color: white; border: none; padding: 0 20px; height: 28px; font-weight: bold; align-self: flex-end; cursor: pointer; }
 
         .badge-venda { color: #16a34a; font-weight: bold; }
@@ -113,15 +103,26 @@
                 <li><a href="#">Movimentação</a></li>
                 <li><a href="#">Consumo Interno</a></li>
                 <li><a href="#">Grupos</a></li>
-                <li><a href="#">Listas de Preços</a></li>
             </ul>
         </li>
 
-        <li><a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
+        <li class="submenu">
+            <a href="#">
+                <i class="fa-solid fa-tags"></i> 
+                <span>Ordens de Serviço</span> 
+                <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span>
+            </a>
+            <ul>
+                <li><a href="os.html">Todas / Trabalhando</a></li>
+                <li><a href="#">Entrada</a></li>
+                <li><a href="#">Finalizado</a></li>
+            </ul>
+        </li>
+
+        <li><a href="termo-e-garantias.html"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
+        <li><a href="financeiro.html"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
+        <li><a href="relatorios.html"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
+        <li><a href="configuracoes.html"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
     </ul>
 </div>
 
@@ -131,7 +132,7 @@
             <a href="index.html" title="Home" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a>
             <a href="produtos.html" class="current">Produtos</a>
         </div>
-        
+        <h1>Produtos</h1>
     </div>
 
     <div class="container-fluid">
@@ -209,7 +210,7 @@
 
 <script>
     $(document).ready(function(){
-        // Força a exibição imediata (suave) se estiver marcado como open no carregamento
+        // Garante que o item marcado como 'open' no HTML carregue aberto suavemente
         $('.submenu.open ul').show();
 
         $('.submenu > a').off('click').on('click', function(e){
@@ -222,6 +223,9 @@
                     $li.removeClass('open');
                 });
             } else {
+                // Se quiser fechar os outros ao abrir um novo (sanfona pura), descomente a linha abaixo:
+                // $('#sidebar li.submenu.open ul').slideUp(300).parent().removeClass('open');
+                
                 $li.addClass('open');
                 $submenu.stop(true, true).slideDown(300);
             }
