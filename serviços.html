@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>InforOS | Serviços</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-style.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-media.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { background-color: #2e363f !important; }
+        
+        /* MENU LATERAL PADRONIZADO E SINCRONIZADO (11 ITENS) */
+        #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
+        #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
+        #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
+
+        /* Widgets e Tabelas Matrix */
+        .widget-box { background: #fff; border: 1px solid #cdcdcd; border-radius: 3px; margin-top: 16px; }
+        .widget-title { background: #efefef; border-bottom: 1px solid #cdcdcd; height: 36px; }
+        .widget-title span.icon { border-right: 1px solid #cdcdcd; padding: 9px 10px; float: left; opacity: 0.7; }
+        .widget-title h5 { float: left; font-size: 12px; font-weight: bold; padding: 10px; line-height: 12px; margin: 0; }
+        
+        /* Abas Superiores */
+        .widget-title .nav-tabs { border: 0; display: block; float: left; margin: 0; }
+        .widget-title .nav-tabs li { margin: 0; border-right: 1px solid #cdcdcd; }
+        .widget-title .nav-tabs li a { border: 0; border-radius: 0; padding: 10px 15px; line-height: 16px; color: #666; }
+        .widget-title .nav-tabs li.active a { background-color: #fff; color: #333; font-weight: bold; }
+
+        /* Barra de Filtragem Elegante */
+        .filter-container { padding: 20px; background: #fff; }
+        .filter-container label { font-weight: bold; color: #555; margin-bottom: 5px; display: block; }
+        .filter-container input[type="text"] { border-radius: 0; border: 1px solid #d5d5d5; padding: 8px 10px; height: 20px; box-shadow: none; }
+        .btn-filter { margin-top: 23px; background-color: #27a9e3; color: white; border: none; padding: 7px 20px; border-radius: 3px; font-weight: bold; }
+
+        .buttons { float: right; margin: 5px 10px 0 0; }
+        .btn-success { background-color: #28b779 !important; border-color: #28b779 !important; }
+        .fg-toolbar { background: #efefef; border-top: 1px solid #cdcdcd; padding: 10px; }
+    </style>
+</head>
+<body>
+
+<div id="header"><h1><a href="index.html">InforOS</a></h1></div>
+
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
+        <li class="dropdown"><a href="#"><i class="fa-solid fa-envelope"></i> <span class="text">Mensagens</span> <span class="label label-important">5</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
+    </ul>
+</div>
+
+<div id="sidebar">
+    <ul>
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span>Painel</span></a></li>
+        <li><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
+        <li><a href="equipamentos.html"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
+        <li class="active"><a href="servicos.html"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span></a></li>
+        <li><a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
+    </ul>
+</div>
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> 
+            <a href="index.html" title="Home" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="servicos.html" class="current">Serviços</a>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div style="margin-top: 15px;">
+            <a href="adicionarServico.html" class="btn btn-success"><i class="fa-solid fa-plus"></i> Adicionar Serviço</a>
+        </div>
+
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"><i class="fa-solid fa-filter"></i></span>
+                <h5>Filtrar Serviços</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <form method="get" action="#">
+                    <div class="filter-container">
+                        <div class="row-fluid">
+                            <div class="span5">
+                                <label>Pesquisar por Nome ou Descrição do Serviço</label>
+                                <input type="text" name="pesquisa" class="span12" placeholder="Ex: Formatação, Limpeza, Troca de Tela..." />
+                            </div>
+                            <div class="span2">
+                                <button type="submit" class="btn-filter"><i class="fa-solid fa-magnifying-glass"></i> Filtrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="widget-box">
+            <div class="widget-title"> 
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#"><i class="fa-solid fa-list"></i> Listar Serviços</a></li>
+                    <li><a href="adicionarServico.html"><i class="fa-solid fa-plus"></i> Adicionar Novo</a></li>
+                </ul>
+                <div class="buttons">
+                    <a title="Imprimir" class="btn btn-mini" href="#"><i class="fa-solid fa-print"></i> Imprimir</a>
+                </div>
+            </div>
+            
+            <div class="widget-content nopadding">
+                <table class="table table-bordered data-table">
+                    <thead>
+                        <tr>
+                            <th style="width: 5%">#</th>
+                            <th>Nome do Serviço</th>
+                            <th>Preço</th>
+                            <th>Descrição</th>
+                            <th style="width: 15%">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>Limpeza Preventiva</td>
+                            <td>R$ 150,00</td>
+                            <td>Limpeza interna e troca de pasta térmica</td>
+                            <td style="text-align: center;">
+                                <a href="#" class="btn btn-info btn-mini" title="Visualizar"><i class="fa-solid fa-eye"></i></a>
+                                <a href="#" class="btn btn-success btn-mini" title="Editar"><i class="fa-solid fa-pencil"></i></a>
+                                <a href="#" class="btn btn-danger btn-mini" title="Excluir"><i class="fa-solid fa-trash-can"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
+                    <div class="dataTables_paginate fg-buttonset ui-buttonset">
+                        <a class="fg-button ui-button ui-state-default">Anterior</a>
+                        <span><a class="fg-button ui-button ui-state-default ui-state-disabled">1</a></span>
+                        <a class="fg-button ui-button ui-state-default">Próximo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="footer" class="span12"> 2026 © InforOS - Fidelidade Total </div>
+
+<script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
+<script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
+<script src="https://teste.inforos.online/assets/js/matrix.js"></script>
+
+</body>
+</html>
