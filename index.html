@@ -34,32 +34,44 @@
         .bg_lo { background: #ff4b4b; } .bg_ly { background: #ffb848; }
         .bg_lb { background: #27a9e3; } .bg_lg { background: #28b779; }
 
-        /* MENU LATERAL - PADRONIZADO E INTERATIVO */
+        /* MENU LATERAL PADRONIZADO */
         #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
         #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
         #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
 
-        /* ESTILO DO SUBMENU (FECHADO POR PADRÃO) */
+        /* SUBMENU COM PROFUNDIDADE ESCURA - CORRIGIDO PARA TRANSIÇÃO SUAVE */
         #sidebar li.submenu ul { 
             display: none; 
-            background: #3d4751 !important; /* Profundidade visual */
+            background: #252b32 !important; /* Cor escura conforme image_0159fa.png */
             list-style: none;
             margin: 0;
             padding: 0;
+            overflow: hidden; /* Garante que o conteúdo não 'escape' durante a animação */
         }
+        
+        /* Removemos qualquer regra CSS que force o display:block para evitar conflitos com o jQuery */
+        #sidebar li.submenu.open > a { 
+            background: #2e363f !important; 
+        }
+
         #sidebar li.submenu ul li a { 
             padding: 10px 15px 10px 45px !important; 
             font-size: 12px; 
-            color: #bdc4cc !important; 
+            color: #88929b !important; 
             border-left: none !important;
+            background: transparent !important;
         }
-        #sidebar li.submenu ul li a:hover { background: #27a9e3 !important; color: #fff !important; padding-left: 50px !important; }
+        #sidebar li.submenu ul li a:hover { 
+            background: #27a9e3 !important; 
+            color: #fff !important; 
+            padding-left: 50px !important; 
+        }
 
-        /* Seta Vermelha Interativa */
+        /* Badge Vermelha Interativa conforme original */
         .label-submenu { 
             background-color: #ff5b57 !important; 
             padding: 2px 5px; 
-            border-radius: 3px; 
+            border-radius: 4px; 
             float: right; 
             margin-right: 15px;
             margin-top: 2px;
@@ -97,7 +109,6 @@
                 <li><a href="#">Movimentação</a></li>
                 <li><a href="#">Consumo Interno</a></li>
                 <li><a href="#">Grupos</a></li>
-                <li><a href="#">Listas de Preços</a></li>
             </ul>
         </li>
 
@@ -107,8 +118,6 @@
                 <li><a href="os.html">Todas / Trabalhando</a></li>
                 <li><a href="#">Entrada</a></li>
                 <li><a href="#">Orçamento</a></li>
-                <li><a href="#">Aberto</a></li>
-                <li><a href="#">Andamento</a></li>
                 <li><a href="#">Finalizado</a></li>
             </ul>
         </li>
@@ -134,7 +143,6 @@
             <a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
                 <li><a href="relatorios.html">Clientes</a></li>
-                <li><a href="#">Equipamentos</a></li>
                 <li><a href="#">Vendas</a></li>
             </ul>
         </li>
@@ -177,25 +185,29 @@
     </div>
 </div>
 
-<div id="footer" class="span12"> 2026 © InforOS - Fidelidade Total Padronizada </div>
+<div id="footer" class="span12"> 2026 © InforOS - Fidelidade Total </div>
 
 <script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
 <script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
 
 <script>
     $(document).ready(function(){
-        $('.submenu > a').click(function(e){
+        // Remove qualquer comportamento padrão para garantir que o jQuery controle a animação
+        $('.submenu > a').off('click').on('click', function(e){
             e.preventDefault();
-            var submenu = $(this).siblings('ul');
-            var li = $(this).parents('li');
+            var $li = $(this).parent('li');
+            var $submenu = $li.find('ul');
             
-            if(li.hasClass('open')) {
-                submenu.slideUp(250, function(){
-                    li.removeClass('open');
+            if($li.hasClass('open')) {
+                $submenu.slideUp(300, function(){
+                    $li.removeClass('open');
                 });
             } else {
-                li.addClass('open');
-                submenu.slideDown(250);
+                // Fecha outros submenus abertos para efeito sanfona limpo (opcional)
+                // $('#sidebar li.submenu.open ul').slideUp(300).parent().removeClass('open');
+                
+                $li.addClass('open');
+                $submenu.stop(true, true).slideDown(300);
             }
         });
     });
