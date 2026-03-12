@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>InforOS | Adicionar Compra</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-style.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-media.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { background-color: #2e363f !important; }
+        
+        /* MENU LATERAL PADRONIZADO, FIXO E SINCRONIZADO (11 ITENS) */
+        #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
+        #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
+        #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
+
+        /* WIDGET BOX COM CORES RESTAURADAS */
+        .widget-box { background: #fff; border: 1px solid #cdcdcd; border-radius: 3px; margin-top: 20px; overflow: hidden; }
+        
+        .header-azul { background-color: #27a9e3 !important; color: white !important; }
+        .header-verde { background-color: #28b779 !important; color: white !important; }
+        .header-cinza { background-color: #666666 !important; color: white !important; }
+
+        .widget-title { border-bottom: 1px solid #cdcdcd; height: 36px; display: flex; align-items: center; justify-content: space-between; }
+        .widget-title span.icon { border-right: 1px solid rgba(255,255,255,0.2); padding: 9px 10px; opacity: 0.9; }
+        .widget-title h5 { font-size: 12px; font-weight: bold; padding: 10px; margin: 0; color: inherit; }
+        
+        /* ALINHAMENTO DO FORMULÁRIO */
+        .form-horizontal .control-group { border-top: 1px solid #ffffff; border-bottom: 1px solid #eeeeee; margin-bottom: 0; display: flex; align-items: center; }
+        .form-horizontal .control-label { 
+            padding: 15px 0; width: 180px; background-color: #f9f9f9; 
+            border-right: 1px solid #eeeeee; font-weight: bold; text-align: right; margin-right: 20px;
+        }
+        .form-horizontal .controls { padding: 10px 0; display: flex; gap: 10px; align-items: center; flex-grow: 1; }
+        
+        input[type="text"], input[type="datetime-local"], textarea { 
+            border-radius: 0 !important; border: 1px solid #d5d5d5; padding: 6px 10px; box-shadow: none !important; 
+        }
+        
+        .btn-title { margin-right: 10px; padding: 2px 10px; font-size: 11px; border: 1px solid rgba(255,255,255,0.5) !important; color: white !important; }
+
+        /* AJUSTE DOS BOTÕES PARA A DIREITA */
+        .form-actions { 
+            background-color: #f5f5f5; border-top: 1px solid #e5e5e5; 
+            margin: 0; padding: 20px; display: flex; justify-content: flex-end; gap: 10px;
+        }
+        
+        .empty-state { text-align: center; padding: 30px; color: #999; border: 1px dashed #ddd; margin: 15px; background: #fafafa; border-radius: 4px; }
+        .required-mark { color: #b94a48; }
+    </style>
+</head>
+<body>
+
+<div id="header"><h1><a href="index.html">InforOS</a></h1></div>
+
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
+        <li class="dropdown"><a href="#"><i class="fa-solid fa-envelope"></i> <span class="text">Mensagens</span> <span class="label label-important">5</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
+    </ul>
+</div>
+
+<div id="sidebar">
+    <ul>
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span>Painel</span></a></li>
+        <li><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
+        <li><a href="equipamentos.html"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
+        <li><a href="servicos.html"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
+        <li class="active"><a href="compras.html"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span></a></li>
+        <li><a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
+    </ul>
+</div>
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> 
+            <a href="index.html" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="compras.html">Compras</a>
+            <a href="#" class="current">Adicionar</a>
+        </div>
+        <h1>Nova Compra</h1>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                
+                <div class="widget-box">
+                    <div class="widget-title header-azul">
+                        <div style="display: flex; align-items: center;">
+                            <span class="icon"><i class="fa-solid fa-info-circle"></i></span>
+                            <h5>Informações da Compra</h5>
+                        </div>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <form action="#" class="form-horizontal">
+                            <div class="control-group">
+                                <label class="control-label">Fornecedor<span class="required-mark">*</span></label>
+                                <div class="controls">
+                                    <input type="text" placeholder="Digite para buscar fornecedor..." style="width: 60%">
+                                    <button type="button" class="btn btn-success btn-mini"><i class="fa-solid fa-plus"></i> Novo Fornecedor</button>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Data da Compra</label>
+                                <div class="controls">
+                                    <input type="datetime-local" style="width: 250px">
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Observações</label>
+                                <div class="controls">
+                                    <textarea rows="3" style="width: 80%" placeholder="Notas internas sobre a compra..."></textarea>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="widget-box">
+                    <div class="widget-title header-verde">
+                        <div style="display: flex; align-items: center;">
+                            <span class="icon"><i class="fa-solid fa-boxes-stacked"></i></span>
+                            <h5>Produtos da Compra</h5>
+                        </div>
+                        <button class="btn btn-success btn-mini btn-title"><i class="fa-solid fa-plus"></i> Adicionar Produto</button>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <div class="empty-state">
+                            <i class="fa-solid fa-box-open" style="font-size: 24px; opacity: 0.5;"></i>
+                            <p style="margin-top: 10px;">Nenhum produto adicionado até o momento.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="widget-box">
+                    <div class="widget-title header-cinza">
+                        <div style="display: flex; align-items: center;">
+                            <span class="icon"><i class="fa-solid fa-receipt"></i></span>
+                            <h5>Custos Adicionais</h5>
+                        </div>
+                        <button class="btn btn-warning btn-mini btn-title" style="background-color: #ff9800 !important; color: white !important;"><i class="fa-solid fa-plus"></i> Adicionar Custo</button>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <div class="empty-state">
+                            <i class="fa-solid fa-file-invoice-dollar" style="font-size: 24px; opacity: 0.5;"></i>
+                            <p style="margin-top: 10px;">Nenhum custo extra (frete, taxas) registrado.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <a href="compras.html" class="btn btn-default"><i class="fa-solid fa-backward"></i> Voltar</a>
+                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Registrar Compra</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer" class="span12"> 2026 © InforOS - Fidelidade Total </div>
+
+<script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
+<script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
+<script src="https://teste.inforos.online/assets/js/matrix.js"></script>
+
+</body>
+</html>
