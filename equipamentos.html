@@ -21,7 +21,6 @@
         #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
         #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
 
-        /* Submenu com fundo escuro para profundidade profissional */
         #sidebar li.submenu ul { 
             display: none; 
             background: #252b32 !important; 
@@ -45,7 +44,6 @@
         #sidebar li.submenu ul li.active a { color: #fff !important; background: #27a9e3 !important; }
         #sidebar li.submenu ul li a:hover { background: #27a9e3 !important; color: #fff !important; padding-left: 50px !important; }
 
-        /* Badge Vermelha Interativa (Seta) */
         .label-submenu { 
             background-color: #ff5b57 !important; 
             padding: 2px 5px; 
@@ -63,13 +61,11 @@
         .widget-title span.icon { border-right: 1px solid #cdcdcd; padding: 9px 10px; float: left; opacity: 0.7; }
         .widget-title h5 { float: left; font-size: 12px; font-weight: bold; padding: 10px; line-height: 12px; margin: 0; }
         
-        /* Abas Superiores */
         .widget-title .nav-tabs { border: 0; display: block; float: left; margin: 0; }
         .widget-title .nav-tabs li { margin: 0; border-right: 1px solid #cdcdcd; }
         .widget-title .nav-tabs li a { border: 0; border-radius: 0; padding: 10px 15px; line-height: 16px; color: #666; }
         .widget-title .nav-tabs li.active a { background-color: #fff; color: #333; font-weight: bold; }
 
-        /* Barra de Filtragem */
         .filter-container { padding: 20px; background: #fff; }
         .filter-container label { font-weight: bold; color: #555; margin-bottom: 5px; display: block; }
         .filter-container input[type="text"] { border-radius: 0; border: 1px solid #d5d5d5; padding: 8px 10px; height: 20px; box-shadow: none; }
@@ -163,7 +159,7 @@
 
     <div class="container-fluid">
         <div style="margin-top: 15px;">
-            <a href="adicionarEquipamentos.html" class="btn btn-success"><i class="fa-solid fa-plus"></i> Adicionar Equipamento</a> 
+            <a href="https://elielton-bogado.github.io/site-teste/adicionarEquipamentos.html" class="btn btn-success"><i class="fa-solid fa-plus"></i> Adicionar Equipamento</a>
         </div>
 
         <div class="widget-box">
@@ -192,7 +188,7 @@
             <div class="widget-title"> 
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#"><i class="fa-solid fa-list"></i> Listar Equipamentos</a></li>
-                    <li><a href="adicionarEquipamento.html"><i class="fa-solid fa-plus"></i> Adicionar Novo</a></li>
+                    <li><a href="https://elielton-bogado.github.io/site-teste/adicionarEquipamentos.html"><i class="fa-solid fa-plus"></i> Adicionar Novo</a></li>
                 </ul>
                 <div class="buttons">
                     <a title="Imprimir" class="btn btn-mini" href="#"><i class="fa-solid fa-print"></i> Imprimir</a>
@@ -230,14 +226,6 @@
                         </tr>
                     </tbody>
                 </table>
-
-                <div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
-                    <div class="dataTables_paginate fg-buttonset ui-buttonset">
-                        <a class="fg-button ui-button ui-state-default">Anterior</a>
-                        <span><a class="fg-button ui-button ui-state-default ui-state-disabled">1</a></span>
-                        <a class="fg-button ui-button ui-state-default">Próximo</a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -250,7 +238,6 @@
 
 <script>
     $(document).ready(function(){
-        // Efeito sanfona suave padrão InforOS Profissional
         $('.submenu > a').off('click').on('click', function(e){
             e.preventDefault();
             var $li = $(this).parent('li');
