@@ -14,24 +14,39 @@
     <style>
         body { background-color: #2e363f !important; }
         
-        /* Menu Lateral - PADRÃO SINCRONIZADO APROVADO */
+        /* Menu Lateral - PADRÃO SINCRONIZADO */
         #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
         #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
         #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
 
-        /* Widgets e Formulários */
+        /* Ajustes de fidelidade para o formulário */
         .widget-box { background: #fff; border: 1px solid #cdcdcd; border-radius: 3px; margin-top: 16px; }
         .widget-title { background: #efefef; border-bottom: 1px solid #cdcdcd; height: 36px; }
         .widget-title span.icon { border-right: 1px solid #cdcdcd; padding: 9px 10px; float: left; opacity: 0.7; }
         .widget-title h5 { float: left; font-size: 12px; font-weight: bold; padding: 10px; line-height: 12px; margin: 0; }
-        .form-actions { background-color: #f5f5f5; border-top: 1px solid #e5e5e5; padding: 15px 20px; }
+        
+        /* Cores de fundo cinza nos labels para bater com a imagem original */
+        .form-horizontal .control-group { border-top: 1px solid #ffffff; border-bottom: 1px solid #eeeeee; margin-bottom: 0; }
+        .form-horizontal .control-label { 
+            padding-top: 15px; 
+            width: 160px; 
+            background-color: #f9f9f9; 
+            border-right: 1px solid #eeeeee; 
+            font-weight: bold;
+            color: #333;
+        }
+        .form-horizontal .controls { margin-left: 180px; padding: 8px 0; }
+        .form-actions { background-color: #f5f5f5; border-top: 1px solid #e5e5e5; margin: 0; padding: 20px 20px 20px 180px; }
+        
+        /* Impedir que os campos fiquem compridos demais */
+        input[type="text"], input[type="email"] { border-radius: 4px; border: 1px solid #ddd; padding: 6px 10px; }
+        .span12 { width: 100%; }
+        .required { color: #b94a48; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div id="header">
-    <h1><a href="index.html">InforOS</a></h1>
-</div>
+<div id="header"><h1><a href="index.html">InforOS</a></h1></div>
 
 <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav">
@@ -46,14 +61,8 @@
         <li><a href="index.html"><i class="fa-solid fa-house"></i> <span>Painel</span></a></li>
         <li class="active"><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
         <li><a href="#"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span></a></li>
         <li><a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
         <li><a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
     </ul>
 </div>
 
@@ -76,26 +85,40 @@
                         <h5>Cadastro de Cliente</h5>
                     </div>
                     <div class="widget-content nopadding">
-                        <form action="#" class="form-horizontal">
+                        <form action="#" id="formCliente" class="form-horizontal">
                             <div class="control-group">
-                                <label class="control-label">Nome*</label>
-                                <div class="controls"><input type="text" placeholder="Nome do Cliente" style="width: 80%"></div>
+                                <label for="nome" class="control-label">Nome<span class="required">*</span></label>
+                                <div class="controls">
+                                    <input id="nome" type="text" name="nome" placeholder="Nome Completo" style="width: 60%"/>
+                                </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">CPF/CNPJ*</label>
-                                <div class="controls"><input type="text" placeholder="000.000.000-00" style="width: 40%"></div>
+                                <label for="documento" class="control-label">CPF/CNPJ<span class="required">*</span></label>
+                                <div class="controls">
+                                    <input id="documento" type="text" name="documento" placeholder="000.000.000-00" style="width: 25%"/>
+                                </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Telefone*</label>
-                                <div class="controls"><input type="text" placeholder="(00) 00000-0000" style="width: 40%"></div>
+                                <label for="telefone" class="control-label">Telefone<span class="required">*</span></label>
+                                <div class="controls">
+                                    <input id="telefone" type="text" name="telefone" placeholder="(00) 00000-0000" style="width: 25%"/>
+                                </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Email</label>
-                                <div class="controls"><input type="email" placeholder="email@exemplo.com" style="width: 60%"></div>
+                                <label for="email" class="control-label">Email<span class="required">*</span></label>
+                                <div class="controls">
+                                    <input id="email" type="text" name="email" placeholder="email@exemplo.com" style="width: 40%"/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label for="rua" class="control-label">Rua<span class="required">*</span></label>
+                                <div class="controls">
+                                    <input id="rua" type="text" name="rua" placeholder="Rua..." style="width: 60%"/>
+                                </div>
                             </div>
                             <div class="form-actions">
-                                <button type="submit" class="btn btn-success"><i class="fa-solid fa-check"></i> Salvar</button>
-                                <a href="clientes.html" class="btn btn-default"><i class="fa-solid fa-arrow-left"></i> Voltar</a>
+                                <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus"></i> Adicionar</button>
+                                <a href="clientes.html" class="btn btn-default"><i class="fa-solid fa-backward"></i> Voltar</a>
                             </div>
                         </form>
                     </div>
@@ -105,7 +128,7 @@
     </div>
 </div>
 
-<div id="footer" class="span12"> 2026 © InforOS - Fidelidade Total </div>
+<div id="footer" class="span12"> 2026 © InforOS - Sistema de Gestão </div>
 
 <script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
 <script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
