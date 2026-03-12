@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>InforOS | Compras</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-style.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-media.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { background-color: #2e363f !important; }
+        
+        /* ===========================================================
+           NOVO PADRÃO DE MENU LATERAL (APROVADO)
+           =========================================================== */
+        #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
+        #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
+        #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
+
+        /* Submenu com fundo escuro para profundidade profissional */
+        #sidebar li.submenu ul { 
+            display: none; 
+            background: #252b32 !important; 
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            border-top: 1px solid #1a1f24;
+            overflow: hidden;
+        }
+        
+        #sidebar li.submenu.open > a { background: #2e363f !important; }
+
+        #sidebar li.submenu ul li a { 
+            padding: 10px 15px 10px 45px !important; 
+            font-size: 12px; 
+            color: #88929b !important; 
+            background: transparent !important;
+            border-left: none !important;
+        }
+        
+        #sidebar li.submenu ul li.active a { color: #fff !important; background: #27a9e3 !important; }
+        #sidebar li.submenu ul li a:hover { background: #27a9e3 !important; color: #fff !important; padding-left: 50px !important; }
+
+        /* Badge Vermelha Interativa (Seta) */
+        .label-submenu { 
+            background-color: #ff5b57 !important; 
+            padding: 2px 5px; 
+            border-radius: 4px; 
+            float: right; 
+            margin-right: 15px;
+            margin-top: 2px;
+            color: white;
+            font-size: 10px;
+        }
+
+        /* Widgets Matrix */
+        .widget-box { background: #fff; border: 1px solid #cdcdcd; border-radius: 3px; margin-top: 16px; }
+        .widget-title { background: #efefef; border-bottom: 1px solid #cdcdcd; height: 36px; }
+        .widget-title span.icon { border-right: 1px solid #cdcdcd; padding: 9px 10px; float: left; opacity: 0.7; }
+        .widget-title h5 { float: left; font-size: 12px; font-weight: bold; padding: 10px; line-height: 12px; margin: 0; }
+        
+        /* BARRA DE FILTRAGEM ENQUADRADA */
+        .filter-container { padding: 15px; background: #fff; display: flex; flex-wrap: wrap; gap: 10px; }
+        .filter-group { flex: 1 1 180px; display: flex; flex-direction: column; }
+        .filter-group label { font-weight: bold; color: #555; font-size: 11px; margin-bottom: 3px; }
+        .filter-group input, .filter-group select { width: 100% !important; border-radius: 0; border: 1px solid #d5d5d5; padding: 4px 8px; height: 28px; box-sizing: border-box; }
+        
+        .btn-filter { background-color: #27a9e3; color: white; border: none; padding: 0 20px; height: 28px; font-weight: bold; align-self: flex-end; cursor: pointer; }
+        
+        /* Cores de Status */
+        .btn-success { background-color: #28b779 !important; border-color: #28b779 !important; }
+        .label-success { background-color: #468847 !important; }
+        .label-warning { background-color: #f89406 !important; }
+        .label-info { background-color: #3a87ad !important; }
+        .label-important { background-color: #b94a48 !important; }
+    </style>
+</head>
+<body>
+
+<div id="header"><h1><a href="index.html">InforOS</a></h1></div>
+
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
+        <li class="dropdown"><a href="#"><i class="fa-solid fa-envelope"></i> <span class="text">Mensagens</span> <span class="label label-important">5</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
+    </ul>
+</div>
+
+<div id="sidebar">
+    <ul>
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span>Painel</span></a></li>
+        <li><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
+        <li><a href="equipamentos.html"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
+        <li><a href="servicos.html"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
+        <li class="active"><a href="compras.html"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
+        
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="produtos.html">Cadastrados</a></li>
+                <li><a href="#">Movimentação</a></li>
+                <li><a href="#">Consumo Interno</a></li>
+                <li><a href="#">Grupos</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="os.html">Todas / Trabalhando</a></li>
+                <li><a href="#">Entrada</a></li>
+                <li><a href="#">Finalizado</a></li>
+            </ul>
+        </li>
+
+        <li><a href="termo-e-garantias.html"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
+        <li><a href="financeiro.html"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
+        <li><a href="relatorios.html"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
+        <li><a href="configuracoes.html"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
+    </ul>
+</div>
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> 
+            <a href="index.html" title="Home" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="compras.html" class="current">Compras</a>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div style="margin-top: 15px;">
+            <a href="adicionarCompra.html" class="btn btn-success"><i class="fa-solid fa-cart-plus"></i> Nova Compra</a>
+        </div>
+
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"><i class="fa-solid fa-filter"></i></span>
+                <h5>Filtrar Compras</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <form method="get" action="#">
+                    <div class="filter-container">
+                        <div class="filter-group">
+                            <label>ID Compra</label>
+                            <input type="number" name="id" placeholder="ID">
+                        </div>
+                        <div class="filter-group">
+                            <label>Fornecedor</label>
+                            <input type="text" name="fornecedor" placeholder="Nome">
+                        </div>
+                        <div class="filter-group">
+                            <label>Status</label>
+                            <select name="status">
+                                <option value="">Todos</option>
+                                <option value="pendente">Aguardando</option>
+                                <option value="recebido">Recebido</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-filter"><i class="fa-solid fa-magnifying-glass"></i> Filtrar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="widget-box">
+            <div class="widget-title"> 
+                <span class="icon"><i class="fa-solid fa-cart-shopping"></i></span>
+                <h5>Listagem de Compras</h5>
+                <h5 style="float: right; margin-right: 10px;">Total: 12</h5>
+            </div>
+            
+            <div class="widget-content nopadding">
+                <table class="table table-bordered data-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Data</th>
+                            <th>Fornecedor</th>
+                            <th>Produtos / Status</th>
+                            <th>Total / Financeiro</th>
+                            <th style="width: 10%">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1400</td>
+                            <td>12/03/2026</td>
+                            <td>RAYANY DE SOUSA CONSEIÇÃO</td>
+                            <td><span class="label label-success">Recebido</span><br>CABO flexivel 4mm</td>
+                            <td><span class="label label-success">Faturado</span><br>R$ 378,00</td>
+                            <td style="text-align: center;">
+                                <a href="#" class="btn btn-mini"><i class="fa-solid fa-eye"></i></a>
+                                <a href="#" class="btn btn-info btn-mini"><i class="fa-solid fa-pencil"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer" class="span12"> 2026 © InforOS - Fidelidade Total </div>
+
+<script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
+<script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('.submenu > a').off('click').on('click', function(e){
+            e.preventDefault();
+            var $li = $(this).parent('li');
+            var $submenu = $li.find('ul');
+            
+            if($li.hasClass('open')) {
+                $submenu.slideUp(300, function(){
+                    $li.removeClass('open');
+                });
+            } else {
+                $li.addClass('open');
+                $submenu.stop(true, true).slideDown(300);
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
