@@ -9,45 +9,86 @@
     <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-style.css">
     <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-media.css">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Ajustes para fidelidade visual */
         body { background-color: #2e363f !important; }
-        .dashboard-card { background: #fff; border-radius: 16px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.07); padding: 24px; margin-bottom: 24px; border: 1px solid rgba(0, 0, 0, 0.05); }
-        .card-header h5 { margin: 0; font-size: 18px; font-weight: 700; color: #1e293b; }
-        .quick-actions-modern { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
-        .quick-action-card { background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); border-radius: 12px; padding: 20px; text-align: center; border: 1px solid #cbd5e1; font-weight: 600; color: #334155; }
-        .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 16px; }
-        .status-item { border-radius: 12px; padding: 20px 16px; text-align: center; color: white; transition: 0.3s; }
-        .status-item strong { font-size: 28px; display: block; }
-        .bg_lo { background-color: #ef4444; } .bg_ly { background-color: #f59e0b; }
-        .bg_lb { background-color: #3b82f6; } .bg_lg { background-color: #10b981; }
         
-        /* Estilo da barra superior igual ao original */
+        /* --- EFEITOS DE HOVER (PASSAR O MOUSE) --- */
+        
+        /* Efeito nos Cartões de Ações Rápidas */
+        .quick-action-card { 
+            background: #f8fafc; 
+            border-radius: 10px; 
+            padding: 15px; 
+            text-align: center; 
+            border: 1px solid #e2e8f0; 
+            transition: all 0.3s ease; /* Cria o efeito de animação suave */
+            cursor: pointer;
+        }
+
+        .quick-action-card:hover { 
+            background: #ffffff; 
+            transform: translateY(-5px); /* Faz o botão "subir" levemente */
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1); /* Cria uma sombra ao fundo */
+            border-color: #3b82f6;
+        }
+
+        /* Efeito nos itens de Status (Vencidas, Hoje, etc) */
+        .status-item { 
+            border-radius: 8px; 
+            padding: 15px 10px; 
+            text-align: center; 
+            color: white; 
+            transition: opacity 0.2s; 
+        }
+
+        .status-item:hover { 
+            opacity: 0.85; /* Dá um efeito de "brilho" ao encostar */
+            cursor: default;
+        }
+
+        /* Efeito no Menu Lateral */
+        #sidebar ul li a { transition: all 0.2s; }
+        #sidebar ul li a:hover { 
+            background-color: #27a9e3 !important; 
+            color: white !important; 
+            padding-left: 25px !important; /* Efeito do menu "esticar" para a direita */
+        }
+
+        /* Estilo Geral dos Cards */
+        .dashboard-card { background: #fff; border-radius: 12px; padding: 20px; margin-bottom: 20px; border: 1px solid #ddd; }
+        .card-header h5 { margin: 0 0 15px 0; font-size: 16px; font-weight: 700; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        
+        .quick-actions-modern { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+        .status-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; }
+        .status-item strong { font-size: 22px; display: block; }
+
+        /* Cores */
+        .bg_lo { background-color: #ef4444; } 
+        .bg_ly { background-color: #f59e0b; } 
+        .bg_lb { background-color: #3b82f6; } 
+        .bg_lg { background-color: #10b981; }
+
         #search { position: absolute; z-index: 25; top: 10px; right: 10px; }
-        #search input { margin-bottom: 0; padding: 5px 10px; border-radius: 5px 0 0 5px; border: none; }
+        #search input { padding: 5px 10px; border-radius: 5px 0 0 5px; border: 1px solid #ccc; }
         #search button { border: none; padding: 6px 12px; border-radius: 0 5px 5px 0; background: #10b981; color: white; }
     </style>
 </head>
 <body>
 
-<div id="header">
-    <h1><a href="#">InforOS</a></h1>
-</div>
+<div id="header"><h1><a href="index.html">InforOS</a></h1></div>
 
 <div id="search">
-    <input type="text" placeholder="Pesquisar no sistema...">
+    <input type="text" placeholder="Pesquisar OS...">
     <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
 </div>
 
 <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav">
-        <li><a title="" href="#"><i class="fa-solid fa-house"></i> <span class="text">Inicio</span></a></li>
-        <li><a title="" href="#"><i class="fa-solid fa-phone"></i> <span class="text">Suporte</span></a></li>
-        <li class="pull-right"><a title="" href="#"><i class="fa-solid fa-bell"></i></a></li>
-        <li><a title="" href="#"><i class="fa-solid fa-right-from-bracket"></i> <span class="text">Sair</span></a></li>
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
+        <li class="pull-right"><a href="#"><i class="fa-solid fa-bell"></i></a></li>
+        <li><a href="#"><i class="fa-solid fa-right-from-bracket"></i> <span class="text">Sair</span></a></li>
     </ul>
 </div>
 
@@ -55,84 +96,44 @@
     <ul>
         <li class="active"><a href="index.html"><i class="fa-solid fa-house"></i> <span>Painel</span></a></li>
         <li><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span></a></li>
         <li><a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
         <li><a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
         <li><a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
     </ul>
 </div>
 
 <div id="content">
     <div id="content-header">
-        <div id="breadcrumb"><a href="#" class="tip-bottom"><i class="fa-solid fa-house"></i> Painel</a></div>
+        <div id="breadcrumb"> <a href="#" class="tip-bottom"><i class="fa-solid fa-house"></i> Painel</a></div>
     </div>
 
     <div class="container-fluid">
-        
         <div class="dashboard-card">
             <div class="card-header"><h5><i class="fa-solid fa-bolt"></i> Ações Rápidas</h5></div>
             <div class="quick-actions-modern">
-                <div class="quick-action-card"><i class="fa-solid fa-tags"></i><br>Ordens de Serviço</div>
-                <div class="quick-action-card"><i class="fa-solid fa-cart-shopping"></i><br>Vendas</div>
-                <div class="quick-action-card"><i class="fa-solid fa-basket-shopping"></i><br>Produtos</div>
-                <div class="quick-action-card"><i class="fa-solid fa-money-bill"></i><br>Financeiro</div>
+                <div class="quick-action-card" onclick="location.href='os.html'"><i class="fa-solid fa-tags" style="color:#3b82f6; font-size: 24px;"></i><br>Ordens de Serviço</div>
+                <div class="quick-action-card"><i class="fa-solid fa-cart-shopping" style="color:#10b981; font-size: 24px;"></i><br>Vendas</div>
+                <div class="quick-action-card"><i class="fa-solid fa-money-bill-wave" style="color:#f59e0b; font-size: 24px;"></i><br>Financeiro</div>
             </div>
         </div>
 
         <div class="row-fluid">
-            <div class="span7">
+            <div class="span12">
                 <div class="dashboard-card">
-                    <div class="card-header"><h5><i class="fa-solid fa-triangle-exclamation"></i> Prazo</h5></div>
+                    <div class="card-header"><h5><i class="fa-solid fa-clock"></i> Controle de Prazos</h5></div>
                     <div class="status-grid">
-                        <div class="status-item bg_lo"><strong>629</strong>VENCIDAS</div>
-                        <div class="status-item bg_ly"><strong>10</strong>HOJE</div>
-                        <div class="status-item bg_lb"><strong>12</strong>AMANHÃ</div>
-                        <div class="status-item bg_lg"><strong>438</strong>NO PRAZO</div>
-                    </div>
-                </div>
-            </div>
-            <div class="span5">
-                <div class="dashboard-card">
-                    <div class="card-header"><h5><i class="fa-solid fa-triangle-exclamation"></i> Prioridade</h5></div>
-                    <div class="status-grid">
-                        <div class="status-item bg_lo"><strong>131</strong>ALTA</div>
-                        <div class="status-item bg_ly"><strong>64</strong>MÉDIA</div>
-                        <div class="status-item bg_lg"><strong>896</strong>BAIXA</div>
+                        <div class="status-item bg_lo"><strong>629</strong><span>Vencidas</span></div>
+                        <div class="status-item bg_ly"><strong>10</strong><span>Hoje</span></div>
+                        <div class="status-item bg_lg"><strong>438</strong><span>No Prazo</span></div>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div class="dashboard-card">
-            <div class="card-header"><h5><i class="fa-solid fa-chart-line"></i> Situação</h5></div>
-            <div class="quick-actions-modern" style="grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));">
-                <div class="quick-action-card"><span style="color:#3b82f6; font-size:24px;">54</span><br><small>ENVIAR P/ CLIENTE</small></div>
-                <div class="quick-action-card"><span style="color:#3b82f6; font-size:24px;">37</span><br><small>AGUARD. RESPOSTA</small></div>
-                <div class="quick-action-card"><span style="color:#3b82f6; font-size:24px;">23</span><br><small>COMPRAR PEÇA</small></div>
-                <div class="quick-action-card"><span style="color:#3b82f6; font-size:24px;">31</span><br><small>AGUARD. PEÇA</small></div>
-                <div class="quick-action-card"><span style="color:#3b82f6; font-size:24px;">15</span><br><small>TESTES FINAIS</small></div>
-                <div class="quick-action-card"><span style="color:#3b82f6; font-size:24px;">122</span><br><small>ENTREGAR</small></div>
-            </div>
-        </div>
-
-        <div class="dashboard-card">
-            <div class="card-header"><h5><i class="fa-solid fa-wallet"></i> Resumo Financeiro</h5></div>
-            <div class="quick-actions-modern">
-                <div class="status-item bg_lg" style="padding:10px;">Receitas: R$ 3.831,66</div>
-                <div class="status-item bg_lo" style="padding:10px;">Despesas: R$ 0,00</div>
-            </div>
-        </div>
-
     </div>
 </div>
 
 <div class="row-fluid">
-    <div id="footer" class="span12">2026 © InforOS - Clone Estrutural</div>
+    <div id="footer" class="span12"> 2026 © InforOS - Clone Fiel com Efeitos </div>
 </div>
 
 <script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
