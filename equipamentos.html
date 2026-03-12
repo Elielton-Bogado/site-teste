@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>InforOS | Equipamentos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-style.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-media.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { background-color: #2e363f !important; }
+        
+        /* MENU LATERAL PADRONIZADO E SINCRONIZADO APROVADO */
+        #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
+        #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
+        #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
+
+        /* Widgets e Tabelas Matrix */
+        .widget-box { background: #fff; border: 1px solid #cdcdcd; border-radius: 3px; margin-top: 16px; }
+        .widget-title { background: #efefef; border-bottom: 1px solid #cdcdcd; height: 36px; }
+        .widget-title span.icon { border-right: 1px solid #cdcdcd; padding: 9px 10px; float: left; opacity: 0.7; }
+        .widget-title h5 { float: left; font-size: 12px; font-weight: bold; padding: 10px; line-height: 12px; margin: 0; }
+        .buttons { float: right; margin: 5px 10px 0 0; }
+
+        /* DataTables (Filtros e Paginação) */
+        .dataTables_length { padding: 15px; float: left; }
+        .dataTables_filter { padding: 15px; float: right; text-align: right; }
+        .dataTables_filter input { border: 1px solid #ddd; padding: 5px; margin-left: 10px; border-radius: 3px; }
+        .fg-toolbar { background: #efefef; border-top: 1px solid #cdcdcd; padding: 10px; }
+
+        /* Cores de Ação Matrix */
+        .btn-success { background-color: #28b779 !important; border-color: #28b779 !important; }
+        .btn-info { background-color: #27a9e3 !important; }
+        .btn-danger { background-color: #da4f49 !important; }
+    </style>
+</head>
+<body>
+
+<div id="header">
+    <h1><a href="index.html">InforOS</a></h1>
+</div>
+
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
+        <li class="dropdown"><a href="#"><i class="fa-solid fa-envelope"></i> <span class="text">Mensagens</span> <span class="label label-important">5</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
+    </ul>
+</div>
+
+<div id="sidebar">
+    <ul>
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span>Painel</span></a></li>
+        <li><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
+        <li class="active"><a href="equipamentos.html"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span></a></li>
+        <li><a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span></a></li>
+    </ul>
+</div>
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> 
+            <a href="index.html" title="Home" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="#" class="current">Equipamentos</a>
+        </div>
+        <h1>Equipamentos</h1>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span12">
+                
+                <div style="margin-top: 15px;">
+                    <a href="#" class="btn btn-success"><i class="fa-solid fa-plus"></i> Adicionar Equipamento</a>
+                </div>
+
+                <div class="widget-box">
+                    <div class="widget-title"> 
+                        <span class="icon"><i class="fa-solid fa-server"></i></span>
+                        <h5>Equipamentos</h5>
+                        <div class="buttons">
+                            <a title="Imprimir" class="btn btn-mini" href="#"><i class="fa-solid fa-print"></i> Imprimir</a>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-content nopadding">
+                        <div class="dataTables_length">
+                            <label>Exibir 
+                                <select size="1" style="width: 60px;">
+                                    <option value="10" selected="selected">10</option>
+                                    <option value="25">25</option>
+                                    <option value="50">50</option>
+                                </select> registros
+                            </label>
+                        </div>
+                        <div class="dataTables_filter">
+                            <label>Pesquisar: <input type="text"></label>
+                        </div>
+
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5%">#</th>
+                                    <th>Equipamento</th>
+                                    <th>Marca</th>
+                                    <th>Modelo</th>
+                                    <th>Número de Série</th>
+                                    <th style="width: 15%">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Notebook Dell Vostro</td>
+                                    <td>Dell</td>
+                                    <td>3500</td>
+                                    <td>BR12345678</td>
+                                    <td style="text-align: center;">
+                                        <a href="#" class="btn btn-info btn-mini" title="Visualizar"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="#" class="btn btn-success btn-mini" title="Editar"><i class="fa-solid fa-pencil"></i></a>
+                                        <a href="#" class="btn btn-danger btn-mini" title="Excluir"><i class="fa-solid fa-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
+                            <div class="dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers">
+                                <a class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default ui-state-disabled">Primeiro</a>
+                                <a class="previous fg-button ui-button ui-state-default ui-state-disabled">Anterior</a>
+                                <span><a class="fg-button ui-button ui-state-default ui-state-disabled">1</a></span>
+                                <a class="next fg-button ui-button ui-state-default">Próximo</a>
+                                <a class="last ui-corner-tr ui-corner-br fg-button ui-button ui-state-default">Último</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer" class="span12"> 2026 © InforOS - Sistema de Gestão </div>
+
+<script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
+<script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
+<script src="https://teste.inforos.online/assets/js/matrix.js"></script>
+
+</body>
+</html>
