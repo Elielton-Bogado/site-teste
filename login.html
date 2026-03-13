@@ -15,19 +15,18 @@
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
             display: flex;
-            flex-direction: column; /* Organiza os itens em coluna */
+            flex-direction: column; 
             align-items: center;
-            justify-content: center; /* Mantém o menu sempre centralizado */
+            justify-content: center; 
             background: #0d1117; 
             position: relative;
             overflow-x: hidden;
             overflow-y: auto;
-            padding: 20px 0; /* Espaço de segurança para o zoom */
+            padding: 20px 0;
         }
 
-        /* BOLAS DECORATIVAS NAS QUINAS */
         .corner-ball {
-            position: fixed; /* Mantém as bolas fixas no fundo */
+            position: fixed;
             background: rgba(255, 255, 255, 0.02);
             border-radius: 50%;
             z-index: 1;
@@ -37,7 +36,6 @@
         .ball-top-right { width: 550px; height: 550px; top: -200px; right: -150px; }
         .ball-bottom-left { width: 450px; height: 450px; bottom: -150px; left: -150px; }
 
-        /* CARD DE LOGIN - RESTAURADO: BORDAS SUAVES (40px) E CONTORNO GROSSO (4px) */
         .login-card {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(20px);
@@ -50,7 +48,7 @@
             position: relative;
             z-index: 10;
             box-shadow: 0 0 50px rgba(30, 64, 175, 0.3), 0 20px 40px rgba(0, 0, 0, 0.6); 
-            margin: auto 0; /* Garante a centralização vertical perfeita */
+            margin: auto 0;
         }
 
         .logo-container { text-align: center; margin-bottom: 30px; }
@@ -90,7 +88,6 @@
             font-size: 16px;
         }
 
-        /* BOTÃO AUTENTICAR */
         .btn-login {
             width: 100%;
             padding: 16px;
@@ -116,7 +113,6 @@
 
         .btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        /* RODAPÉ AJUSTADO PARA SER DINÂMICO E NÃO SOBREPOR */
         .footer-info {
             width: 100%;
             text-align: center;
@@ -124,7 +120,7 @@
             font-size: 11px;
             z-index: 10;
             padding-bottom: 30px;
-            margin-top: 20px; /* Distância fixa mínima do menu principal */
+            margin-top: 20px;
         }
 
         .badge-teste {
@@ -187,6 +183,14 @@
     </div>
 
     <script>
+        // FUNÇÃO PARA RESETAR O BOTÃO AO VOLTAR A PÁGINA
+        window.addEventListener("pageshow", function (event) {
+            const btn = $('#btnSubmit');
+            if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
+                btn.prop('disabled', false).html('<i class="fa-solid fa-right-to-bracket"></i> Autenticar');
+            }
+        });
+
         $('#formLogin').on('submit', function(e) {
             e.preventDefault();
             
