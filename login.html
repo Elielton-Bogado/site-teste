@@ -49,6 +49,20 @@
             z-index: 10;
             box-shadow: 0 0 50px rgba(30, 64, 175, 0.3), 0 20px 40px rgba(0, 0, 0, 0.6); 
             margin: auto 0;
+            transition: transform 0.3s ease;
+        }
+
+        /* ANIMAÇÃO DE TREMER */
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+            border-color: #ff4b4b !important; /* Muda a borda para vermelho brevemente */
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
         }
 
         .logo-container { text-align: center; margin-bottom: 30px; }
@@ -101,7 +115,6 @@
             border: 1px solid rgba(255, 75, 75, 0.2);
         }
 
-        /* BOTÃO COM BRILHO RESTAURADO */
         .btn-login {
             width: 100%;
             padding: 16px;
@@ -121,7 +134,6 @@
 
         .btn-login:hover { 
             transform: translateY(-1px);
-            /* Restaura o brilho e a intensidade ao passar o mouse */
             box-shadow: 0 0 20px rgba(39, 169, 227, 0.6), 0 6px 20px rgba(39, 169, 227, 0.4);
             filter: brightness(1.2); 
         }
@@ -159,7 +171,7 @@
     <div class="corner-ball ball-top-right"></div>
     <div class="corner-ball ball-bottom-left"></div>
 
-    <div class="login-card">
+    <div class="login-card" id="cardPrincipal">
         <div class="logo-container">
             <img src="https://teste.inforos.online/assets/img/logo-white.png" alt="InforOS">
         </div>
@@ -200,7 +212,6 @@
     </div>
 
     <script>
-    // Reseta o botão ao voltar a página
     window.addEventListener("pageshow", function (event) {
         const btn = $('#btnSubmit');
         if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
@@ -213,41 +224,44 @@
         
         const btn = $('#btnSubmit');
         const errorMsg = $('#login-error');
+        const card = $('#cardPrincipal');
         
-        errorMsg.hide(); // Esconde erro anterior
+        errorMsg.hide();
+        card.removeClass('shake'); // Remove a animação se ela já estiver lá
+        
         btn.prop('disabled', true).html('<i class="fa-solid fa-spinner fa-spin"></i> Validando...');
         
         const email = $('#email').val();
         const senha = $('#senha').val();
 
-        // SUA URL DO GOOGLE APPS SCRIPT
         const urlScript = "https://script.google.com/macros/s/AKfycby_iCS7XSNM6eg4by-F9WVxwC25S1TTgExmX7EM_-peBVWDpvIIZk-oSsNd6e3xXUx4/exec";
 
         $.ajax({
             url: urlScript,
             method: "GET",
-            dataType: "text", // Fundamental para ler a resposta do Google
-            data: {
-                email: email,
-                senha: senha
-            },
+            dataType: "text",
+            data: { email: email, senha: senha },
             success: function(resposta) {
-                // Remove espaços em branco e verifica a resposta
                 if (resposta.trim() === "success") {
                     window.location.href = "index.html"; 
                 } else {
-                    errorMsg.fadeIn(); // MOSTRA A MENSAGEM NO CARD
+                    // LOGIN INCORRETO: Tremer o card e mostrar erro
+                    errorMsg.fadeIn();
+                    card.addClass('shake');
+                    
+                    // Remove a classe após a animação para poder repetir depois
+                    setTimeout(() => card.removeClass('shake'), 500);
+                    
                     btn.prop('disabled', false).html('<i class="fa-solid fa-right-to-bracket"></i> Autenticar');
                 }
             },
             error: function() {
-                alert("Erro técnico: Verifique se a URL do script está correta e implantada como 'Qualquer pessoa'.");
+                alert("Erro técnico: Verifique a conexão.");
                 btn.prop('disabled', false).html('<i class="fa-solid fa-right-to-bracket"></i> Autenticar');
             }
         });
     });
 
-    // Esconde o erro quando o usuário volta a digitar
     $('input').on('input', function() {
         $('#login-error').fadeOut();
     });
