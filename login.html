@@ -48,7 +48,7 @@
             position: relative;
             z-index: 10;
             box-shadow: 0 0 50px rgba(30, 64, 175, 0.3), 0 20px 40px rgba(0, 0, 0, 0.6); 
-            margin: auto 0;
+            margin: auto 0; /* Centralização perfeita */
         }
 
         .logo-container { text-align: center; margin-bottom: 30px; }
@@ -105,12 +105,7 @@
             box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
         }
 
-        .btn-login:hover { 
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(39, 169, 227, 0.4);
-            filter: brightness(1.1);
-        }
-
+        .btn-login:hover { transform: translateY(-1px); filter: brightness(1.1); }
         .btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
 
         .footer-info {
@@ -134,7 +129,6 @@
             margin-bottom: 12px;
             font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 1px;
             box-shadow: 0 0 10px rgba(30, 64, 175, 0.3);
         }
     </style>
@@ -195,27 +189,34 @@
             e.preventDefault();
             
             const btn = $('#btnSubmit');
-            btn.prop('disabled', true).html('<i class="fa-solid fa-spinner fa-spin"></i> Autenticando...');
+            btn.prop('disabled', true).html('<i class="fa-solid fa-spinner fa-spin"></i> Validando...');
             
-            const dados = {
-                email: $('#email').val(),
-                senha: $('#senha').val()
-            };
+            const email = $('#email').val();
+            const senha = $('#senha').val();
 
             const urlScript = "https://script.google.com/macros/s/AKfycbwzgsCD8tS39phDv77ISh7qMyY53m-KGZNt733KGbhu3zYLfTZmGlv7XLgGNzWynBjL/exec";
 
-            fetch(urlScript, {
-                method: 'POST',
-                mode: 'no-cors', 
-                body: JSON.stringify(dados)
-            })
-            .then(() => {
-                window.location.href = "index.html"; 
-            })
-            .catch(err => {
-                console.error("Erro na conexão:", err);
-                alert("Erro ao conectar com o servidor.");
-                btn.prop('disabled', false).html('<i class="fa-solid fa-right-to-bracket"></i> Autenticar');
+            // Usando AJAX com GET para validar a resposta da planilha
+            $.ajax({
+                url: urlScript,
+                method: "GET",
+                dataType: "text",
+                data: {
+                    email: email,
+                    senha: senha
+                },
+                success: function(resposta) {
+                    if (resposta.trim() === "success") {
+                        window.location.href = "index.html"; 
+                    } else {
+                        alert("Acesso Negado: Usuário ou senha incorretos.");
+                        btn.prop('disabled', false).html('<i class="fa-solid fa-right-to-bracket"></i> Autenticar');
+                    }
+                },
+                error: function() {
+                    alert("Erro ao conectar com o banco de dados.");
+                    btn.prop('disabled', false).html('<i class="fa-solid fa-right-to-bracket"></i> Autenticar');
+                }
             });
         });
     </script>
