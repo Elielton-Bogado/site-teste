@@ -34,13 +34,13 @@
         .ball-top-right { width: 550px; height: 550px; top: -200px; right: -150px; }
         .ball-bottom-left { width: 450px; height: 450px; bottom: -150px; left: -150px; }
 
-        /* CARD DE LOGIN COM BORDAS SUAVES E AZUL ESCURO BRILHANTE */
+        /* CARD DE LOGIN - RESTAURADO: BORDAS SUAVES (40px) E CONTORNO GROSSO (4px) */
         .login-card {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 4px solid #1e40af; 
-            border-radius: 40px; 
+            border: 4px solid #1e40af; /* Azul Escuro Robusto */
+            border-radius: 40px; /* Suavidade elegante */
             padding: 50px 40px;
             width: 100%;
             max-width: 410px;
@@ -86,7 +86,7 @@
             font-size: 16px;
         }
 
-        /* BOTÃO AUTENTICAR EM AZUL */
+        /* BOTÃO AUTENTICAR */
         .btn-login {
             width: 100%;
             padding: 16px;
@@ -112,7 +112,7 @@
 
         .btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        /* RODAPÉ E BADGE EM AZUL */
+        /* RODAPÉ E BADGE */
         .footer-info {
             position: absolute;
             bottom: 30px;
@@ -194,16 +194,16 @@
                 senha: $('#senha').val()
             };
 
-            // INSIRA AQUI A URL DO SEU GOOGLE APPS SCRIPT
+            // URL DO SEU GOOGLE APPS SCRIPT ATUALIZADA
             const urlScript = "https://script.google.com/macros/s/AKfycbwzgsCD8tS39phDv77ISh7qMyY53m-KGZNt733KGbhu3zYLfTZmGlv7XLgGNzWynBjL/exec";
 
             fetch(urlScript, {
                 method: 'POST',
-                mode: 'no-cors', // Necessário para enviar dados para o Google Sheets sem erro de segurança
+                mode: 'no-cors', 
                 body: JSON.stringify(dados)
             })
             .then(() => {
-                // Redireciona para a página inicial do seu site
+                // Redireciona para a sua página inicial
                 window.location.href = "index.html"; 
             })
             .catch(err => {
