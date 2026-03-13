@@ -1,5 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
+
+
+
+
+
+    
+<head>
+    <script>
+        // Se não houver a chave de login, redireciona para a tela inicial imediatamente
+        if (localStorage.getItem("inforos_logado") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
+    <meta charset="UTF-8">
+    <title>InforOS | Painel</title>
+    ```
+
+---
+
+### 3. Ajuste no botão de "Sair"
+Não se esqueça de "limpar a mesa" ao sair. No seu menu superior ou lateral, onde está o botão de sair, adicione um `id` para podermos dar o comando de limpar:
+
+**No HTML:**
+```html
+<li><a href="login.html" id="linkSair"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
+
+
+
+
+
+
+
+
+
+    
+
+
+
+    
 <head>
     <meta charset="UTF-8">
     <title>InforOS | Sistema de O.S</title>
@@ -335,6 +375,24 @@
             chartFin.resize();
         });
     });
+
+
+
+
+
+
+
+$(document).ready(function(){
+    $('#linkSair').on('click', function() {
+        localStorage.removeItem("inforos_logado"); // Apaga a permissão
+    });
+});
+
+
+
+
+
+    
 </script>
 
 </body>
