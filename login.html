@@ -48,7 +48,7 @@
             position: relative;
             z-index: 10;
             box-shadow: 0 0 50px rgba(30, 64, 175, 0.3), 0 20px 40px rgba(0, 0, 0, 0.6); 
-            margin: auto 0; /* Centralização perfeita */
+            margin: auto 0;
         }
 
         .logo-container { text-align: center; margin-bottom: 30px; }
@@ -88,6 +88,20 @@
             font-size: 16px;
         }
 
+        /* MENSAGEM DE ERRO PERSONALIZADA */
+        #login-error {
+            display: none;
+            color: #ff4b4b;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 15px;
+            background: rgba(255, 75, 75, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 75, 75, 0.2);
+        }
+
         .btn-login {
             width: 100%;
             padding: 16px;
@@ -101,7 +115,6 @@
             transition: 0.3s ease;
             display: flex;
             align-items: center; justify-content: center; gap: 10px;
-            margin-top: 15px;
             box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
         }
 
@@ -165,6 +178,8 @@
                 </div>
             </div>
 
+            <div id="login-error"><i class="fa-solid fa-triangle-exclamation"></i> Login incorreto</div>
+
             <button type="submit" id="btnSubmit" class="btn-login">
                 <i class="fa-solid fa-right-to-bracket"></i> Autenticar
             </button>
@@ -177,7 +192,6 @@
     </div>
 
     <script>
-        // FUNÇÃO PARA RESETAR O BOTÃO AO VOLTAR A PÁGINA
         window.addEventListener("pageshow", function (event) {
             const btn = $('#btnSubmit');
             if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
@@ -189,6 +203,9 @@
             e.preventDefault();
             
             const btn = $('#btnSubmit');
+            const errorMsg = $('#login-error');
+            
+            errorMsg.fadeOut(); // Esconde erro anterior se houver
             btn.prop('disabled', true).html('<i class="fa-solid fa-spinner fa-spin"></i> Validando...');
             
             const email = $('#email').val();
@@ -196,20 +213,16 @@
 
             const urlScript = "https://script.google.com/macros/s/AKfycbwzgsCD8tS39phDv77ISh7qMyY53m-KGZNt733KGbhu3zYLfTZmGlv7XLgGNzWynBjL/exec";
 
-            // Usando AJAX com GET para validar a resposta da planilha
             $.ajax({
                 url: urlScript,
                 method: "GET",
                 dataType: "text",
-                data: {
-                    email: email,
-                    senha: senha
-                },
+                data: { email: email, senha: senha },
                 success: function(resposta) {
                     if (resposta.trim() === "success") {
                         window.location.href = "index.html"; 
                     } else {
-                        alert("Acesso Negado: Usuário ou senha incorretos.");
+                        errorMsg.fadeIn(); // MOSTRA A MENSAGEM NO CARD
                         btn.prop('disabled', false).html('<i class="fa-solid fa-right-to-bracket"></i> Autenticar');
                     }
                 },
@@ -218,6 +231,11 @@
                     btn.prop('disabled', false).html('<i class="fa-solid fa-right-to-bracket"></i> Autenticar');
                 }
             });
+        });
+
+        // Esconde o erro ao começar a digitar novamente
+        $('input').on('input', function() {
+            $('#login-error').fadeOut();
         });
     </script>
 </body>
