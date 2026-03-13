@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>InforOS | Cadastro Integrado de Garantia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-style.css">
+    <link rel="stylesheet" href="https://teste.inforos.online/assets/css/matrix-media.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { background-color: #2e363f !important; }
+        #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
+        #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
+        #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
+        #sidebar li.submenu ul { display: none; background: #252b32 !important; list-style: none; margin: 0; padding: 0; border-top: 1px solid #1a1f24; }
+        #sidebar li.submenu.open > a { background: #2e363f !important; }
+        #sidebar li.submenu ul li a { padding: 10px 15px 10px 45px !important; font-size: 12px; color: #88929b !important; background: transparent !important; }
+        #sidebar li.submenu ul li.active a { background-color: #27a9e3 !important; color: #fff !important; }
+        .label-submenu { background-color: #ff5b57 !important; padding: 2px 5px; border-radius: 4px; float: right; margin-right: 15px; margin-top: 2px; color: white; font-size: 10px; }
+
+        .widget-box { background: #fff; border: 1px solid #cdcdcd; border-radius: 3px; margin-top: 16px; margin-bottom: 20px; }
+        .widget-title { background: #efefef; border-bottom: 1px solid #cdcdcd; height: 36px; }
+        .widget-title span.icon { border-right: 1px solid #cdcdcd; padding: 9px 10px; float: left; opacity: 0.7; }
+        .widget-title h5 { float: left; font-size: 12px; font-weight: bold; padding: 10px; line-height: 12px; margin: 0; }
+        
+        .container-insercao { padding: 20px; }
+        .required { color: #b94a48; font-weight: bold; }
+        
+        /* Estilização dos blocos de entrada */
+        .bloco-entrada { 
+            border: 1px solid #ddd; 
+            padding: 15px; 
+            margin-bottom: 15px; 
+            border-radius: 4px; 
+            background: #fdfdfd;
+        }
+        .bloco-titulo { 
+            font-weight: bold; 
+            color: #27a9e3; 
+            margin-bottom: 10px; 
+            border-bottom: 1px solid #eee; 
+            padding-bottom: 5px; 
+        }
+    </style>
+</head>
+<body>
+
+<div id="header"><h1><a href="index.html">InforOS</a></h1></div>
+
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
+    </ul>
+</div>
+
+<div id="sidebar">
+    <ul>
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span>Painel</span></a></li>
+        <li><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
+        <li><a href="equipamentos.html"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
+        <li><a href="servicos.html"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
+        <li><a href="compras.html"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
+        
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="produtos.html">Cadastrados</a></li>
+                <li><a href="#">Movimentação</a></li>
+                <li><a href="#">Consumo Interno</a></li>
+                <li><a href="#">Grupos</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="os.html">Todas / Trabalhando</a></li>
+                <li><a href="#">Entrada</a></li> 
+                <li><a href="#">Orçamento</a></li> 
+            </ul>
+        </li>
+
+        <li class="submenu open active">
+            <a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li class="active"><a href="termo-e-garantias.html">Configurar</a></li>
+                <li><a href="monitorar-garantias.html">Visualizar</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="financeiro.html">Faturas</a></li>
+                <li><a href="#">DRE</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="relatorios.html">Clientes</a></li>
+                <li><a href="#">Vendas</a></li>
+            </ul>
+        </li>
+
+        <li class="submenu">
+            <a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <ul>
+                <li><a href="configuracoes.html">Emitente</a></li>
+                <li><a href="#">Usuários</a></li>
+            </ul>
+        </li>
+    </ul>
+</div>
+
+<div id="content">
+    <div id="content-header">
+        <div id="breadcrumb"> 
+            <a href="index.html" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="#">Garantias</a>
+            <a href="#" class="current">Novo Termo Integrado</a>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="widget-box">
+            <div class="widget-title">
+                <span class="icon"><i class="fa-solid fa-link"></i></span>
+                <h5>Entrada de Dados - Termo e Monitoramento</h5>
+            </div>
+            <div class="widget-content nopadding">
+                <form action="#" method="post">
+                    <div class="container-insercao">
+                        
+                        <div class="bloco-entrada">
+                            <div class="bloco-titulo"><i class="fa-solid fa-file-contract"></i> Informações do Termo</div>
+                            <div class="row-fluid">
+                                <div class="span3">
+                                    <label>Data de Criação</label>
+                                    <input type="text" class="span12" value="13/03/2026" disabled>
+                                </div>
+                                <div class="span6">
+                                    <label>Ref. Garantia <span class="required">*</span></label>
+                                    <input type="text" class="span12" placeholder="Ex: Garantia de Tela - iPhone" required>
+                                </div>
+                                <div class="span3">
+                                    <label>Usuário Responsável</label>
+                                    <input type="text" class="span12" value="Elielton" disabled>
+                                </div>
+                            </div>
+                            <div class="row-fluid" style="margin-top:10px">
+                                <div class="span12">
+                                    <label>Resumo do Termo e Garantia (Texto Curto para Listagem)</label>
+                                    <input type="text" class="span12" placeholder="Descreva brevemente as condições principais...">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bloco-entrada">
+                            <div class="bloco-titulo"><i class="fa-solid fa-clock-rotate-left"></i> Configuração de Monitoramento e Prazos</div>
+                            <div class="row-fluid">
+                                <div class="span2">
+                                    <label>OS # <span class="required">*</span></label>
+                                    <input type="number" class="span12" placeholder="0000" required>
+                                </div>
+                                <div class="span5">
+                                    <label>Cliente <span class="required">*</span></label>
+                                    <input type="text" class="span12" placeholder="Nome Completo do Cliente" required>
+                                </div>
+                                <div class="span5">
+                                    <label>Equipamento <span class="required">*</span></label>
+                                    <input type="text" class="span12" placeholder="Marca/Modelo" required>
+                                </div>
+                            </div>
+                            <div class="row-fluid" style="margin-top:10px">
+                                <div class="span4">
+                                    <label>Tempo de Garantia (Total de Dias) <span class="required">*</span></label>
+                                    <input type="number" class="span12" placeholder="Ex: 90" required>
+                                </div>
+                                <div class="span4">
+                                    <label>Vence em (Cálculo Automático)</label>
+                                    <input type="date" class="span12" name="dataVencimento" required>
+                                </div>
+                                <div class="span4">
+                                    <label>Status Inicial</label>
+                                    <select class="span12">
+                                        <option>Finalizado</option>
+                                        <option>Concluido</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions" style="text-align: center; border-top: 1px solid #eee; background: #f9f9f9; margin-top: 20px;">
+                        <button type="submit" class="btn btn-success" style="padding: 10px 40px;"><i class="fa-solid fa-plus"></i> Gerar Entrada nas Duas Páginas</button>
+                        <a href="termo-e-garantias.html" class="btn" style="padding: 10px 40px;"><i class="fa-solid fa-reply"></i> Voltar</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="footer" class="span12"> 2026 © InforOS </div>
+
+<script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
+<script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        $('.submenu.open ul').show();
+        $('.submenu > a').on('click', function(e){
+            e.preventDefault();
+            var $li = $(this).parent('li');
+            var $submenu = $li.find('ul');
+            if($li.hasClass('open')) {
+                $submenu.slideUp(300, function(){ $li.removeClass('open'); });
+            } else {
+                $li.addClass('open');
+                $submenu.stop(true, true).slideDown(300);
+            }
+        });
+    });
+</script>
+</body>
+</html>
