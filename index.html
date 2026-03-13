@@ -125,7 +125,7 @@
 <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav">
         <li class="active"><a href="#"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
-        <li><a href="login.html"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
+        <li><a href="login.html" id="linkSair"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
     </ul>
 </div>
 
@@ -333,7 +333,12 @@
             }
         });
 
-        // 2. Inicialização de Gráfico de OS (ECharts)
+        // 2. FUNÇÃO DE SAIR (LOGOUT) - LIMPA A TRAVA DE SEGURANÇA
+        $('#linkSair').on('click', function() {
+            localStorage.removeItem("inforos_logado"); 
+        });
+
+        // 3. Inicialização de Gráfico de OS (ECharts)
         var chartOs = echarts.init(document.getElementById('chart-os'));
         chartOs.setOption({
             tooltip: { trigger: 'axis' },
@@ -346,7 +351,7 @@
             }]
         });
 
-        // 3. Inicialização de Gráfico Financeiro
+        // 4. Inicialização de Gráfico Financeiro
         var chartFin = echarts.init(document.getElementById('chart-financeiro-barras'));
         chartFin.setOption({
             legend: { data: ['Receitas', 'Despesas'], bottom: 0 },
@@ -364,24 +369,6 @@
             chartFin.resize();
         });
     });
-
-
-
-
-
-
-
-$(document).ready(function(){
-    $('#linkSair').on('click', function() {
-        localStorage.removeItem("inforos_logado"); // Apaga a permissão
-    });
-});
-
-
-
-
-
-    
 </script>
 
 </body>
