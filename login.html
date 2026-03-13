@@ -22,7 +22,6 @@
             overflow: hidden;
         }
 
-        /* BOLAS DECORATIVAS NAS QUINAS */
         .corner-ball {
             position: absolute;
             background: rgba(255, 255, 255, 0.02);
@@ -34,7 +33,6 @@
         .ball-top-right { width: 550px; height: 550px; top: -200px; right: -150px; }
         .ball-bottom-left { width: 450px; height: 450px; bottom: -150px; left: -150px; }
 
-        /* CARD DE LOGIN COM BORDAS SUAVES E AZUL ESCURO BRILHANTE */
         .login-card {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(20px);
@@ -86,7 +84,6 @@
             font-size: 16px;
         }
 
-        /* BOTÃO AUTENTICAR EM AZUL */
         .btn-login {
             width: 100%;
             padding: 16px;
@@ -104,13 +101,8 @@
             box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
         }
 
-        .btn-login:hover { 
-            transform: translateY(-1px);
-            box-shadow: 0 6px 20px rgba(39, 169, 227, 0.4);
-            filter: brightness(1.1);
-        }
+        .btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        /* RODAPÉ E BADGE EM AZUL */
         .footer-info {
             position: absolute;
             bottom: 30px;
@@ -169,7 +161,7 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn-login">
+            <button type="submit" id="btnSubmit" class="btn-login">
                 <i class="fa-solid fa-right-to-bracket"></i> Autenticar
             </button>
         </form>
@@ -181,9 +173,37 @@
     </div>
 
     <script>
-        $('#formLogin').on('submit', function(e){
+        $('#formLogin').on('submit', function(e) {
             e.preventDefault();
-            window.location.href = "index.html"; 
+            
+            const btn = $('#btnSubmit');
+            btn.prop('disabled', true).html('<i class="fa-solid fa-spinner fa-spin"></i> Autenticando...');
+            
+            const dados = {
+                email: $('#email').val(),
+                senha: $('#senha').val()
+            };
+
+            // INSIRA AQUI A URL DO SEU GOOGLE APPS SCRIPT
+            const urlScript = "https://script.google.com/macros/s/AKfycbwzgsCD8tS39phDv77ISh7qMyY53m-KGZNt733KGbhu3zYLfTZmGlv7XLgGNzWynBjL/exec";
+
+            fetch(urlScript, {
+                method: 'POST',
+                mode: 'no-cors', // Importante para evitar erros de CORS no redirecionamento do Google
+                body: JSON.stringify(dados)
+            })
+            .then(() => {
+                // Como o fetch com 'no-cors' não lê a resposta JSON, 
+                // para fins de teste simples via Sheets sem servidor complexo:
+                // Vamos simular o redirecionamento.
+                // Se precisar de validação REAL de senha, use um servidor PHP.
+                window.location.href = "index.html"; 
+            })
+            .catch(err => {
+                console.error("Erro na conexão:", err);
+                alert("Erro ao conectar com o servidor.");
+                btn.prop('disabled', false).html('<i class="fa-solid fa-right-to-bracket"></i> Autenticar');
+            });
         });
     </script>
 </body>
