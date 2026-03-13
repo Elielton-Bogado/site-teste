@@ -13,68 +13,44 @@
 
     <style>
         body { background-color: #2e363f !important; }
-        
-        /* ===========================================================
-           NOVO PADRÃO DE MENU LATERAL (APROVADO)
-           =========================================================== */
+        #content { min-height: 90vh; padding-bottom: 50px; }
+
+        /* MENU LATERAL COMPLETO E ESTILIZADO */
         #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
         #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
         #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
-
-        /* Submenu com fundo escuro para profundidade profissional */
-        #sidebar li.submenu ul { 
-            display: none; 
-            background: #252b32 !important; 
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            border-top: 1px solid #1a1f24;
-            overflow: hidden;
-        }
-        
+        #sidebar li.submenu ul { display: none; background: #252b32 !important; list-style: none; margin: 0; padding: 0; border-top: 1px solid #1a1f24; }
         #sidebar li.submenu.open > a { background: #2e363f !important; }
+        #sidebar li.submenu ul li a { padding: 10px 15px 10px 45px !important; font-size: 12px; color: #88929b !important; background: transparent !important; border-left: none !important; }
+        .label-submenu { background-color: #ff5b57 !important; padding: 2px 5px; border-radius: 4px; float: right; margin-right: 15px; margin-top: 2px; color: white; font-size: 10px; }
 
-        #sidebar li.submenu ul li a { 
-            padding: 10px 15px 10px 45px !important; 
-            font-size: 12px; 
-            color: #88929b !important; 
-            background: transparent !important;
-            border-left: none !important;
+        /* BOTÃO WHATSAPP NAS AÇÕES */
+        .wa-button-action { 
+            background-color: #25d366; 
+            color: white !important; 
+            border-radius: 4px;
+            padding: 2px 6px; 
+            display: inline-block;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 11px;
+            line-height: 18px;
         }
+        .wa-button-action:hover { background-color: #128c7e; }
         
-        #sidebar li.submenu ul li.active a { color: #fff !important; background: #27a9e3 !important; }
-        #sidebar li.submenu ul li a:hover { background: #27a9e3 !important; color: #fff !important; padding-left: 50px !important; }
-
-        /* Badge Vermelha Interativa (Seta) */
-        .label-submenu { 
-            background-color: #ff5b57 !important; 
-            padding: 2px 5px; 
-            border-radius: 4px; 
-            float: right; 
-            margin-right: 15px;
-            margin-top: 2px;
-            color: white;
-            font-size: 10px;
+        /* CENTRALIZAÇÃO DO MODAL */
+        #modal-whatsapp {
+            position: fixed;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            margin: 0 !important;
+            width: 90%;
+            max-width: 500px;
         }
-
-        /* Widgets e Tabelas Matrix */
-        .widget-box { background: #fff; border: 1px solid #cdcdcd; border-radius: 3px; margin-top: 16px; }
-        .widget-title { background: #efefef; border-bottom: 1px solid #cdcdcd; height: 36px; }
-        .widget-title span.icon { border-right: 1px solid #cdcdcd; padding: 9px 10px; float: left; opacity: 0.7; }
-        .widget-title h5 { float: left; font-size: 12px; font-weight: bold; padding: 10px; line-height: 12px; margin: 0; }
-        
-        .buttons { float: right; margin: 5px 10px 0 0; }
-
-        /* DataTables (Filtros e Paginação) */
-        .dataTables_length { padding: 15px; float: left; }
-        .dataTables_filter { padding: 15px; float: right; text-align: right; }
-        .dataTables_filter input { border: 1px solid #ddd; padding: 5px; margin-left: 10px; border-radius: 3px; }
-        
-        .fg-toolbar { background: #efefef; border-top: 1px solid #cdcdcd; padding: 10px; }
-
-        .btn-success { background-color: #28b779 !important; border-color: #28b779 !important; }
-        .btn-info { background-color: #27a9e3 !important; }
-        .btn-danger { background-color: #da4f49 !important; }
+        .modal-wa-body { text-align: center; padding: 30px; }
+        .wa-icon-large { font-size: 60px; color: #25d366; margin-bottom: 20px; }
     </style>
 </head>
 <body>
@@ -84,9 +60,15 @@
 <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav">
         <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
-        <li class="dropdown"><a href="#"><i class="fa-solid fa-envelope"></i> <span class="text">Mensagens</span> <span class="label label-important">5</span></a></li>
-        <li><a href="#"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
+        <li><a href="login.html"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
     </ul>
+</div>
+
+<div id="search">
+    <form action="#">
+        <input type="text" placeholder="Pesquisar no sistema..."/>
+        <button type="submit" class="tip-bottom" title="Pesquisar"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
 </div>
 
 <div id="sidebar">
@@ -101,52 +83,45 @@
             <a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
                 <li><a href="produtos.html">Cadastrados</a></li>
-                <li><a href="#">Movimentação</a></li>
-                <li><a href="#">Consumo Interno</a></li>
-                <li><a href="#">Grupos</a></li>
+                <li><a href="movimentacao.html">Movimentação</a></li>
+                <li><a href="consumo.html">Consumo Interno</a></li>
+                <li><a href="grupos.html">Grupos</a></li>
             </ul>
         </li>
 
-             
-     <li class="submenu">
-            <a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
-            <ul>
-                <li><a href="novoOrcamento.html">Novo Orçamento</a></li> 
-                <li><a href="os.html">Orçamentos</a></li>
-               </ul>
-        </li>
-
-        
-
         <li class="submenu">
-            <a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <a href="#"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
-               <li><a href="termo-e-garantias.html">Configurar</a></li>
-                <li><a href="dias-de-garantia.html">Visualizar</a></li>
+                <li><a href="os.html">Listar O.S</a></li>
+                <li><a href="novoOrcamento.html">Novo Orçamento</a></li>
+                <li><a href="os_abertas.html">O.S Abertas</a></li>
             </ul>
         </li>
 
         <li class="submenu">
             <a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
-                <li><a href="financeiro.html">Faturas</a></li>
-                <li><a href="#">DRE</a></li>
+                <li><a href="faturas.html">Faturas</a></li>
+                <li><a href="contas.html">Contas</a></li>
+                <li><a href="dre.html">DRE</a></li>
             </ul>
         </li>
 
         <li class="submenu">
             <a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
-                <li><a href="relatorios.html">Clientes</a></li>
-                <li><a href="#">Vendas</a></li>
+                <li><a href="rel_clientes.html">Clientes</a></li>
+                <li><a href="rel_os.html">O.S</a></li>
+                <li><a href="rel_financeiro.html">Financeiro</a></li>
             </ul>
         </li>
 
         <li class="submenu">
             <a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
-                <li><a href="configuracoes.html">Emitente</a></li>
-                <li><a href="#">Usuários</a></li>
+                <li><a href="emitente.html">Emitente</a></li>
+                <li><a href="usuarios.html">Usuários</a></li>
+                <li><a href="permissoes.html">Permissões</a></li>
             </ul>
         </li>
     </ul>
@@ -161,67 +136,47 @@
     </div>
 
     <div class="container-fluid">
-        <div style="margin-top: 15px;">
-            <a href="adicionarCliente.html" class="btn btn-success"><i class="fa-solid fa-plus"></i> Adicionar Cliente</a>
+        <div class="row-fluid" style="margin-top: 15px;">
+            <div class="span12">
+                <a href="#" class="btn btn-success"><i class="fa-solid fa-plus"></i> Adicionar Cliente</a>
+            </div>
         </div>
 
-        <div class="widget-box">
-            <div class="widget-title"> 
-                <span class="icon"><i class="fa-solid fa-user-group"></i></span>
-                <h5>Clientes</h5>
-                <div class="buttons">
-                    <a title="Imprimir" class="btn btn-mini" href="#"><i class="fa-solid fa-print"></i> Imprimir</a>
-                </div>
-            </div>
-            
-            <div class="widget-content nopadding">
-                <div class="dataTables_length">
-                    <label>Exibir 
-                        <select size="1" style="width: 60px;">
-                            <option value="10" selected="selected">10</option>
-                            <option value="25">25</option>
-                            <option value="50">50</option>
-                        </select> registros
-                    </label>
-                </div>
-                <div class="dataTables_filter">
-                    <label>Pesquisar: <input type="text"></label>
-                </div>
-
-                <table class="table table-bordered data-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 5%">#</th>
-                            <th>Nome</th>
-                            <th>CPF/CNPJ</th>
-                            <th>Telefone</th>
-                            <th>Email</th>
-                            <th style="width: 15%">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Elielton Bogado</td>
-                            <td>000.000.000-00</td>
-                            <td>(67) 99999-9999</td>
-                            <td>contato@exemplo.com</td>
-                            <td style="text-align: center;">
-                                <a href="#" class="btn btn-info btn-mini" title="Visualizar"><i class="fa-solid fa-eye"></i></a>
-                                <a href="#" class="btn btn-success btn-mini" title="Editar"><i class="fa-solid fa-pencil"></i></a>
-                                <a href="#" class="btn btn-danger btn-mini" title="Excluir"><i class="fa-solid fa-trash-can"></i></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="fg-toolbar ui-toolbar ui-widget-header ui-corner-bl ui-corner-br ui-helper-clearfix">
-                    <div class="dataTables_paginate fg-buttonset ui-buttonset fg-buttonset-multi ui-buttonset-multi paging_full_numbers">
-                        <a class="first ui-corner-tl ui-corner-bl fg-button ui-button ui-state-default ui-state-disabled">Primeiro</a>
-                        <a class="previous fg-button ui-button ui-state-default ui-state-disabled">Anterior</a>
-                        <span><a class="fg-button ui-button ui-state-default ui-state-disabled">1</a></span>
-                        <a class="next fg-button ui-button ui-state-default">Próximo</a>
-                        <a class="last ui-corner-tr ui-corner-br fg-button ui-button ui-state-default">Último</a>
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="widget-box">
+                    <div class="widget-title"> 
+                        <span class="icon"><i class="fa-solid fa-user-group"></i></span>
+                        <h5>Listagem de Clientes</h5>
+                    </div>
+                    <div class="widget-content nopadding">
+                        <table class="table table-bordered data-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5%">ID</th>
+                                    <th>Nome</th>
+                                    <th>CPF/CNPJ</th>
+                                    <th>Telefone</th>
+                                    <th style="width: 20%">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Elielton Bogado</td>
+                                    <td>000.000.000-00</td>
+                                    <td>(67) 99999-9999</td>
+                                    <td style="text-align: center;">
+                                        <button class="wa-button-action tip-top" title="WhatsApp" onclick="abrirModalWaha('67999999999', 'Olá, tudo bem?')">
+                                            <i class="fa-brands fa-whatsapp"></i>
+                                        </button>
+                                        <a href="#" class="btn btn-info btn-mini"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="#" class="btn btn-success btn-mini"><i class="fa-solid fa-pencil"></i></a>
+                                        <a href="#" class="btn btn-danger btn-mini"><i class="fa-solid fa-trash-can"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -229,29 +184,63 @@
     </div>
 </div>
 
-<div id="footer" class="span12"> 2026 © InforOS - Fidelidade Total </div>
+<div id="modal-whatsapp" class="modal hide fade" tabindex="-1" role="dialog">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">×</button>
+        <h3>Integração WhatsApp - InforOS</h3>
+    </div>
+    <div class="modal-body modal-wa-body">
+        <i class="fa-brands fa-whatsapp wa-icon-large"></i>
+        <h4>Conectar ao WhatsApp Web</h4>
+        <p>Para enviar mensagens automáticas, certifique-se de que o sistema está conectado ao seu dispositivo.</p>
+        <div class="alert alert-info">
+            <strong>Atenção:</strong> O navegador abrirá uma nova aba para processar o envio. Certifique-se de que o WhatsApp esteja aberto e logado no seu navegador.
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal">Cancelar</button>
+        <button class="btn btn-success" id="confirmSendWpp">Confirmar e Enviar</button>
+    </div>
+</div>
+
+<div id="footer" class="span12"> <span id="anoAtual"></span> © InforOS - Eliezer Refrigeração </div>
 
 <script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
 <script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
 
 <script>
+    var currentWAData = { phone: '', msg: '' };
+
     $(document).ready(function(){
-        // Efeito sanfona suave padrão InforOS Profissional
-        $('.submenu > a').off('click').on('click', function(e){
+        $('#anoAtual').text(new Date().getFullYear());
+
+        $('.submenu > a').click(function(e){
             e.preventDefault();
-            var $li = $(this).parent('li');
-            var $submenu = $li.find('ul');
-            
-            if($li.hasClass('open')) {
-                $submenu.slideUp(300, function(){
-                    $li.removeClass('open');
-                });
+            var submenu = $(this).siblings('ul');
+            var li = $(this).parents('li');
+            if(li.hasClass('open')) {
+                submenu.slideUp(250);
+                li.removeClass('open');
             } else {
-                $li.addClass('open');
-                $submenu.stop(true, true).slideDown(300);
+                $('#sidebar li.submenu.open ul').slideUp(250);
+                $('#sidebar li.submenu.open').removeClass('open');
+                submenu.slideDown(250);
+                li.addClass('open');
             }
         });
+
+        $('#confirmSendWpp').click(function(){
+            var url = "https://api.whatsapp.com/send?phone=55" + currentWAData.phone + "&text=" + encodeURIComponent(currentWAData.msg);
+            window.open(url, '_blank');
+            $('#modal-whatsapp').modal('hide');
+        });
     });
+
+    function abrirModalWaha(celular, mensagem) {
+        currentWAData.phone = celular.replace(/\D/g, '');
+        currentWAData.msg = mensagem;
+        $('#modal-whatsapp').modal('show');
+    }
 </script>
 </body>
 </html>
