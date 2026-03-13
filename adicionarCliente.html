@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>InforOS | Adicionar Cliente</title>
+    <title>InforOS | Gerenciamento de Clientes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="https://teste.inforos.online/assets/css/bootstrap.min.css">
@@ -13,67 +13,36 @@
 
     <style>
         body { background-color: #2e363f !important; }
-        
-        /* ===========================================================
-           NOVO PADRÃO DE MENU LATERAL (APROVADO)
-           =========================================================== */
+        #content { min-height: 90vh; padding-bottom: 50px; }
+
+        /* MENU LATERAL COMPLETO E PROTEGIDO */
         #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
         #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
         #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
-
-        /* Submenu com fundo escuro para profundidade profissional */
-        #sidebar li.submenu ul { 
-            display: none; 
-            background: #252b32 !important; 
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            border-top: 1px solid #1a1f24;
-            overflow: hidden;
-        }
-        
+        #sidebar li.submenu ul { display: none; background: #252b32 !important; list-style: none; margin: 0; padding: 0; border-top: 1px solid #1a1f24; }
         #sidebar li.submenu.open > a { background: #2e363f !important; }
+        #sidebar li.submenu ul li a { padding: 10px 15px 10px 45px !important; font-size: 12px; color: #88929b !important; background: transparent !important; }
+        .label-submenu { background-color: #ff5b57 !important; padding: 2px 5px; border-radius: 4px; float: right; margin-right: 15px; color: white; font-size: 10px; }
 
-        #sidebar li.submenu ul li a { 
-            padding: 10px 15px 10px 45px !important; 
-            font-size: 12px; 
-            color: #88929b !important; 
-            background: transparent !important;
-            border-left: none !important;
-        }
+        /* ORGANIZAÇÃO DA CAIXA DE DADOS */
+        .widget-box { background: #fff; border: 1px solid #cdcdcd; border-radius: 8px; margin-top: 16px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .widget-title { background: #f8f9fa; border-bottom: 1px solid #cdcdcd; height: 40px; border-radius: 8px 8px 0 0; }
+        .widget-title h5 { padding: 12px; font-weight: bold; color: #333; }
         
-        #sidebar li.submenu ul li.active a { color: #fff !important; background: #27a9e3 !important; }
-        #sidebar li.submenu ul li a:hover { background: #27a9e3 !important; color: #fff !important; padding-left: 50px !important; }
+        .form-horizontal .control-group { border-bottom: 1px solid #f1f1f1; margin-bottom: 0; padding: 10px 0; }
+        .form-horizontal .control-label { width: 160px; font-weight: 700; color: #555; text-align: right; padding-top: 5px; }
+        .form-horizontal .controls { margin-left: 180px; }
+        
+        input[type="text"], input[type="password"], select, textarea { border-radius: 4px !important; border: 1px solid #ccc; transition: 0.3s; }
+        input:focus { border-color: #27a9e3 !important; box-shadow: 0 0 5px rgba(39,169,227,0.3) !important; }
 
-        /* Badge Vermelha Interativa (Seta) */
-        .label-submenu { 
-            background-color: #ff5b57 !important; 
-            padding: 2px 5px; 
-            border-radius: 4px; 
-            float: right; 
-            margin-right: 15px;
-            margin-top: 2px;
-            color: white;
-            font-size: 10px;
-        }
-
-        /* AJUSTES DE FIDELIDADE AO FORMULÁRIO MAPOS/MATRIX */
-        .widget-box { background: #fff; border: 1px solid #cdcdcd; border-radius: 3px; margin-top: 16px; }
-        .widget-title { background: #efefef; border-bottom: 1px solid #cdcdcd; height: 36px; }
-        .widget-title span.icon { border-right: 1px solid #cdcdcd; padding: 9px 10px; float: left; opacity: 0.7; }
-        .widget-title h5 { float: left; font-size: 12px; font-weight: bold; padding: 10px; line-height: 12px; margin: 0; }
+        /* SEÇÃO PORTAL DO CLIENTE (DESTAQUE) */
+        .portal-section-header { background: #e7f4fa; color: #055160; padding: 10px 20px; font-weight: bold; border-left: 5px solid #27a9e3; margin: 15px 0; }
         
-        .form-horizontal .control-group { border-top: 1px solid #ffffff; border-bottom: 1px solid #eeeeee; margin-bottom: 0; }
-        .form-horizontal .control-label { 
-            padding-top: 15px; width: 180px; background-color: #f9f9f9; 
-            border-right: 1px solid #eeeeee; font-weight: bold; text-align: right;
-        }
-        .form-horizontal .controls { margin-left: 200px; padding: 8px 0; }
-        .form-actions { background-color: #f5f5f5; border-top: 1px solid #e5e5e5; margin: 0; padding: 20px 20px 20px 200px; }
-        
-        input[type="text"], select { border-radius: 0 !important; box-shadow: none !important; border: 1px solid #d5d5d5; }
-        .required { color: #b94a48; font-weight: bold; }
-        .btn-buscar { margin-left: 5px; background-color: #27a9e3; color: white; border: none; padding: 4px 10px; }
+        /* BARRA DE PESQUISA TOPO DIREITO */
+        #search { position: absolute; right: 20px; top: 5px; z-index: 999; }
+        #search input { background: #444; border: none; color: white; border-radius: 20px; padding: 5px 15px; width: 200px; }
+        #search button { background: none; border: none; color: white; position: absolute; right: 10px; top: 5px; }
     </style>
 </head>
 <body>
@@ -83,53 +52,47 @@
 <div id="user-nav" class="navbar navbar-inverse">
     <ul class="nav">
         <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
-        <li class="dropdown"><a href="#"><i class="fa-solid fa-envelope"></i> <span class="text">Mensagens</span> <span class="label label-important">5</span></a></li>
         <li><a href="#"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
     </ul>
+</div>
+
+<div id="search">
+    <form action="#">
+        <input type="text" placeholder="Pesquisar no sistema..."/>
+        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+    </form>
 </div>
 
 <div id="sidebar">
     <ul>
         <li><a href="index.html"><i class="fa-solid fa-house"></i> <span>Painel</span></a></li>
         <li class="active"><a href="clientes.html"><i class="fa-solid fa-user-group"></i> <span>Clientes / Fornecedores</span></a></li>
-        <li><a href="equipamentos.html"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
-        <li><a href="servicos.html"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
-        <li><a href="compras.html"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-server"></i> <span>Equipamentos</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-briefcase"></i> <span>Serviços</span></a></li>
+        <li><a href="#"><i class="fa-solid fa-cart-shopping"></i> <span>Compras</span></a></li>
         
         <li class="submenu">
             <a href="#"><i class="fa-solid fa-basket-shopping"></i> <span>Produtos</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
-                <li><a href="produtos.html">Cadastrados</a></li>
+                <li><a href="#">Cadastrados</a></li>
                 <li><a href="#">Movimentação</a></li>
                 <li><a href="#">Consumo Interno</a></li>
                 <li><a href="#">Grupos</a></li>
             </ul>
         </li>
 
-           
-     <li class="submenu">
-            <a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
-            <ul>
-                <li><a href="novoOrcamento.html">Novo Orçamento</a></li> 
-                <li><a href="os.html">Orçamentos</a></li>
-               </ul>
-        </li>
-
-
-        
-
         <li class="submenu">
-            <a href="#"><i class="fa-solid fa-list"></i> <span>Termos e Garantias</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
+            <a href="#"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
-                 <li><a href="termo-e-garantias.html">Configurar</a></li>
-                <li><a href="dias-de-garantia.html">Visualizar</a></li>
+                <li><a href="#">Novo Orçamento</a></li> 
+                <li><a href="#">Todas as O.S</a></li>
             </ul>
         </li>
 
         <li class="submenu">
             <a href="#"><i class="fa-solid fa-money-bill-1-wave"></i> <span>Financeiro</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
-                <li><a href="financeiro.html">Faturas</a></li>
+                <li><a href="#">Faturas</a></li>
                 <li><a href="#">DRE</a></li>
                 <li><a href="#">Contas</a></li>
             </ul>
@@ -138,15 +101,15 @@
         <li class="submenu">
             <a href="#"><i class="fa-solid fa-chart-simple"></i> <span>Relatórios</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
-                <li><a href="relatorios.html">Clientes</a></li>
-                <li><a href="#">Vendas</a></li>
+                <li><a href="#">Clientes</a></li>
+                <li><a href="#">O.S</a></li>
             </ul>
         </li>
 
         <li class="submenu">
             <a href="#"><i class="fa-solid fa-gears"></i> <span>Configurações</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
-                <li><a href="configuracoes.html">Emitente</a></li>
+                <li><a href="#">Emitente</a></li>
                 <li><a href="#">Usuários</a></li>
             </ul>
         </li>
@@ -158,7 +121,7 @@
         <div id="breadcrumb"> 
             <a href="index.html" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a>
             <a href="clientes.html">Clientes</a>
-            <a href="#" class="current">Adicionar</a>
+            <a href="#" class="current" id="action-title">Adicionar/Editar</a>
         </div>
     </div>
 
@@ -168,75 +131,79 @@
                 <div class="widget-box">
                     <div class="widget-title">
                         <span class="icon"><i class="fa-solid fa-user-plus"></i></span>
-                        <h5>Cadastro de Cliente</h5>
+                        <h5 id="box-title">Dados do Cliente</h5>
                     </div>
                     <div class="widget-content nopadding">
                         <form action="#" id="formCliente" class="form-horizontal">
+                            
                             <div class="control-group">
                                 <label class="control-label">Tipo</label>
                                 <div class="controls">
                                     <select name="tipo" style="width: 200px">
                                         <option value="Cliente">Cliente</option>
-                                        <option value="Contrato">Contrato</option>
-                                        <option value="Parceiro">Parceiro</option>
                                         <option value="Fornecedor">Fornecedor</option>
-                                        <option value="Garantia">Garantia</option>
-                                        <option value="Fabricante">Fabricante</option>
-                                        <option value="Remoto">Remoto</option>
-                                        <option value="Visita">Visita</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="control-group">
-                                <label for="documento" class="control-label">CNPJ/CPF<span class="required">*</span></label>
+                                <label class="control-label">CNPJ/CPF<span style="color:red">*</span></label>
                                 <div class="controls">
                                     <input id="documento" type="text" name="documento" style="width: 250px" />
-                                    <button type="button" class="btn btn-mini btn-buscar"><i class="fa-solid fa-magnifying-glass"></i> Buscar(CNPJ)</button>
+                                    <button type="button" class="btn btn-mini btn-info" style="margin-top:-10px"><i class="fa-solid fa-magnifying-glass"></i> Buscar(CNPJ)</button>
                                 </div>
                             </div>
 
                             <div class="control-group">
-                                <label for="nome" class="control-label">Nome Completo<span class="required">*</span></label>
-                                <div class="controls">
-                                    <input id="nome" type="text" name="nome" style="width: 450px" />
-                                </div>
+                                <label class="control-label">Nome Completo<span style="color:red">*</span></label>
+                                <div class="controls"><input id="nome" type="text" name="nome" style="width: 450px" /></div>
                             </div>
 
                             <div class="control-group">
-                                <label for="aniversario" class="control-label">Aniversário</label>
-                                <div class="controls">
-                                    <input id="aniversario" type="text" name="aniversario" placeholder="DD/MM/AAAA" style="width: 150px" />
-                                </div>
+                                <label class="control-label">Telefone/WhatsApp<span style="color:red">*</span></label>
+                                <div class="controls"><input id="telefone" type="text" name="telefone" style="width: 200px" placeholder="(00) 00000-0000" /></div>
+                            </div>
+
+                            <div class="portal-section-header">ACESSO AO PORTAL DO CLIENTE</div>
+                            
+                            <div class="control-group">
+                                <label class="control-label">Email (Login)<span style="color:red">*</span></label>
+                                <div class="controls"><input id="email" type="text" name="email" style="width: 350px" placeholder="exemplo@email.com" /></div>
+                            </div>
+                            
+                            <div class="control-group">
+                                <label class="control-label">Senha Acesso<span style="color:red">*</span></label>
+                                <div class="controls"><input id="senha" type="password" name="senha" style="width: 200px" /></div>
+                            </div>
+
+                            <div class="portal-section-header">LOCALIZAÇÃO</div>
+
+                            <div class="control-group">
+                                <label class="control-label">CEP<span style="color:red">*</span></label>
+                                <div class="controls"><input id="cep" type="text" name="cep" style="width: 150px" placeholder="00000-000" /></div>
                             </div>
 
                             <div class="control-group">
-                                <label for="telefone" class="control-label">Telefone<span class="required">*</span></label>
-                                <div class="controls"><input id="telefone" type="text" name="telefone" style="width: 200px" /></div>
-                            </div>
-                            <div class="control-group">
-                                <label for="email" class="control-label">Email<span class="required">*</span></label>
-                                <div class="controls"><input id="email" type="text" name="email" style="width: 350px" /></div>
-                            </div>
-                            <div class="control-group">
-                                <label for="cep" class="control-label">CEP<span class="required">*</span></label>
-                                <div class="controls"><input id="cep" type="text" name="cep" style="width: 150px" /></div>
-                            </div>
-                            <div class="control-group">
-                                <label for="rua" class="control-label">Rua<span class="required">*</span></label>
+                                <label class="control-label">Rua / Logradouro</label>
                                 <div class="controls"><input id="rua" type="text" name="rua" style="width: 450px" /></div>
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label">Cadastrado por</label>
+                                <label class="control-label">Bairro</label>
+                                <div class="controls"><input id="bairro" type="text" name="bairro" style="width: 250px" /></div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label">Cidade / UF</label>
                                 <div class="controls">
-                                    <input type="text" value="Administrador" readonly style="width: 250px; background: #eee;" />
+                                    <input id="cidade" type="text" name="cidade" style="width: 250px" />
+                                    <input id="uf" type="text" name="uf" style="width: 50px" maxlength="2" placeholder="UF" />
                                 </div>
                             </div>
 
-                            <div class="form-actions">
-                                <button type="submit" class="btn btn-success"><i class="fa-solid fa-plus"></i> Adicionar</button>
-                                <a href="clientes.html" class="btn btn-default"><i class="fa-solid fa-backward"></i> Voltar</a>
+                            <div class="form-actions" style="padding-left: 180px;">
+                                <button type="submit" class="btn btn-success"><i class="fa-solid fa-floppy-disk"></i> Salvar Cliente</button>
+                                <a href="clientes.html" class="btn btn-danger"><i class="fa-solid fa-xmark"></i> Cancelar</a>
                             </div>
                         </form>
                     </div>
@@ -246,30 +213,52 @@
     </div>
 </div>
 
-<div id="footer" class="span12"> 2026 © InforOS - Fidelidade Total </div>
+<div id="footer" class="span12"> 2026 © InforOS - Refrigeração Eliezer </div>
 
 <script src="https://teste.inforos.online/assets/js/jquery.min.js"></script>
 <script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
 
 <script>
     $(document).ready(function(){
-        // Efeito sanfona suave aprovado (Padrão InforOS)
-        $('.submenu > a').off('click').on('click', function(e){
+        // 1. CEP INTELIGENTE (ViaCEP)
+        $('#cep').blur(function() {
+            var cep = $(this).val().replace(/\D/g, '');
+            if (cep != "") {
+                $("#rua, #bairro, #cidade, #uf").val("...");
+                $.getJSON("https://viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+                    if (!("erro" in dados)) {
+                        $("#rua").val(dados.logradouro);
+                        $("#bairro").val(dados.bairro);
+                        $("#cidade").val(dados.localidade);
+                        $("#uf").val(dados.uf);
+                    } else {
+                        alert("CEP não encontrado.");
+                    }
+                });
+            }
+        });
+
+        // 2. MENU LATERAL (ANIMAÇÃO SANFONA)
+        $('.submenu > a').click(function(e){
             e.preventDefault();
             var $li = $(this).parent('li');
             var $submenu = $li.find('ul');
-            
             if($li.hasClass('open')) {
-                $submenu.slideUp(300, function(){
-                    $li.removeClass('open');
-                });
+                $submenu.slideUp(300, function(){ $li.removeClass('open'); });
             } else {
                 $li.addClass('open');
                 $submenu.stop(true, true).slideDown(300);
             }
         });
+
+        // 3. MODO EDITAR (IDENTIFICAÇÃO POR URL)
+        const params = new URLSearchParams(window.location.search);
+        if(params.has('id')) {
+            $('#action-title').text('Editar Cliente');
+            $('#box-title').text('Editando Informações do Cliente');
+            // Aqui carregaria os dados via AJAX futuramente
+        }
     });
 </script>
-
 </body>
 </html>
