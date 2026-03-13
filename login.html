@@ -52,10 +52,9 @@
             transition: transform 0.3s ease;
         }
 
-        /* ANIMAÇÃO DE TREMER */
         .shake {
             animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-            border-color: #ff4b4b !important; /* Muda a borda para vermelho brevemente */
+            border-color: #ff4b4b !important;
         }
 
         @keyframes shake {
@@ -208,10 +207,13 @@
 
     <div class="footer-info">
         <div class="badge-teste">Refrigeração Eliezer</div>
-        <p>&copy; 2026 InforOS - Sistema de Gestão</p>
+        <p>&copy; <span id="anoAtual"></span> InforOS - Sistema de Gestão</p>
     </div>
 
     <script>
+    // SCRIPT PARA O ANO ATUAL AUTOMÁTICO
+    document.getElementById("anoAtual").textContent = new Date().getFullYear();
+
     window.addEventListener("pageshow", function (event) {
         const btn = $('#btnSubmit');
         if (event.persisted || (window.performance && window.performance.navigation.type === 2)) {
@@ -227,7 +229,7 @@
         const card = $('#cardPrincipal');
         
         errorMsg.hide();
-        card.removeClass('shake'); // Remove a animação se ela já estiver lá
+        card.removeClass('shake');
         
         btn.prop('disabled', true).html('<i class="fa-solid fa-spinner fa-spin"></i> Validando...');
         
@@ -245,13 +247,9 @@
                 if (resposta.trim() === "success") {
                     window.location.href = "index.html"; 
                 } else {
-                    // LOGIN INCORRETO: Tremer o card e mostrar erro
                     errorMsg.fadeIn();
                     card.addClass('shake');
-                    
-                    // Remove a classe após a animação para poder repetir depois
                     setTimeout(() => card.removeClass('shake'), 500);
-                    
                     btn.prop('disabled', false).html('<i class="fa-solid fa-right-to-bracket"></i> Autenticar');
                 }
             },
