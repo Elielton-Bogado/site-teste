@@ -21,13 +21,11 @@
         #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
         #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
 
-        /* Submenu com fundo escuro para profundidade profissional */
         #sidebar li.submenu ul { 
             display: none; 
             background: #252b32 !important; 
             list-style: none;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             border-top: 1px solid #1a1f24;
             overflow: hidden;
         }
@@ -42,10 +40,14 @@
             border-left: none !important;
         }
         
-        #sidebar li.submenu ul li.active a { color: #fff !important; background: #27a9e3 !important; }
+        /* DESTAQUE AZUL PARA O ITEM ATIVO NO SUBMENU (image_e7effe.png) */
+        #sidebar li.submenu ul li.active a { 
+            color: #fff !important; 
+            background-color: #27a9e3 !important; 
+        }
+
         #sidebar li.submenu ul li a:hover { background: #27a9e3 !important; color: #fff !important; padding-left: 50px !important; }
 
-        /* Badge Vermelha Interativa (Seta) */
         .label-submenu { 
             background-color: #ff5b57 !important; 
             padding: 2px 5px; 
@@ -69,7 +71,21 @@
         .filter-group input, .filter-group select { width: 100% !important; border-radius: 0; border: 1px solid #d5d5d5; padding: 4px 8px; height: 28px; box-sizing: border-box; }
         .btn-filter { background-color: #27a9e3; color: white; border: none; padding: 0 20px; height: 28px; font-weight: bold; align-self: flex-end; cursor: pointer; }
 
-        .btn-success { background-color: #28b779 !important; border-color: #28b779 !important; }
+        /* ===========================================================
+           CORES EXCLUSIVAS PARA CADA TAG (CONFORME SOLICITADO)
+           =========================================================== */
+        .tag-prio-alta { background-color: #da4f49 !important; }
+        .tag-prio-media { background-color: #f89406 !important; }
+        .tag-prio-baixa { background-color: #468847 !important; }
+        .tag-prazo-vencido { background-color: #b94a48 !important; }
+        .tag-prazo-limite { background-color: #3a87ad !important; }
+        .tag-prazo-ok { background-color: #28b779 !important; }
+        .tag-status-terceirizado { background-color: #990099 !important; }
+        .tag-status-pendente { background-color: #777777 !important; }
+        .tag-status-concluido { background-color: #059669 !important; }
+        .tag-status-cancelado { background-color: #000000 !important; }
+        
+        .table td { vertical-align: middle !important; font-size: 12px; }
     </style>
 </head>
 <body>
@@ -102,12 +118,12 @@
             </ul>
         </li>
 
-             <li class="submenu">
+        <li class="submenu open active">
             <a href="os.html"><i class="fa-solid fa-tags"></i> <span>Ordens de Serviço</span> <span class="label-submenu"><i class="fa-solid fa-chevron-down"></i></span></a>
             <ul>
-                <li><a href="os.html">Novo Orçamento</a></li> 
-                <li><a href="#">Orçamentos</a></li>
-               </ul>
+                <li><a href="#">Novo Orçamento</a></li> 
+                <li class="active"><a href="#">Orçamento</a></li> 
+            </ul>
         </li>
 
         <li class="submenu">
@@ -147,7 +163,7 @@
 <div id="content">
     <div id="content-header">
         <div id="breadcrumb"> 
-            <a href="index.html" title="Home" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a>
+            <a href="index.html" class="tip-bottom"><i class="fa-solid fa-house"></i> Home</a>
             <a href="os.html" class="current">Ordens de Serviço</a>
         </div>
     </div>
@@ -158,56 +174,66 @@
         </div>
 
         <div class="widget-box">
-            <div class="widget-title">
-                <span class="icon"><i class="fa-solid fa-filter"></i></span>
-                <h5>Filtrar Ordens de Serviço</h5>
-            </div>
-            <div class="widget-content nopadding">
-                <form method="get" action="#">
-                    <div class="filter-container">
-                        <div class="filter-group">
-                            <label>Cliente</label>
-                            <input type="text" placeholder="Nome do cliente...">
-                        </div>
-                        <div class="filter-group">
-                            <label>Status</label>
-                            <select><option>Todos</option></select>
-                        </div>
-                        <button type="submit" class="btn-filter"><i class="fa-solid fa-magnifying-glass"></i> Filtrar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <div class="widget-box">
-            <div class="widget-title"> 
-                <span class="icon"><i class="fa-solid fa-tags"></i></span>
-                <h5>Listagem de Ordens de Serviço</h5>
-            </div>
+            <div class="widget-title"> <span class="icon"><i class="fa-solid fa-tags"></i></span><h5>Ordens de Serviço Ativas</h5></div>
             <div class="widget-content nopadding">
                 <table class="table table-bordered data-table">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Cliente</th>
+                            <th># ID</th>
+                            <th>Cliente / Prioridade</th>
                             <th>Entrada</th>
-                            <th>Prazo</th>
-                            <th>Valor</th>
-                            <th>Status</th>
-                            <th style="width: 15%">Ações</th>
+                            <th>Prazo de Entrega</th>
+                            <th>Valor Total</th>
+                            <th>Status Geral</th>
+                            <th style="width: 10%">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td>3033</td>
-                            <td>OTTO CAMPOS</td>
+                            <td><span class="label tag-status-terceirizado">Terceirizado</span><br>#3033</td>
+                            <td><span class="label tag-prio-alta">Alta prioridade</span><br>OTTO CAMPOS</td>
                             <td>12/03/2026 16:45</td>
-                            <td>16/03/2026</td>
+                            <td><span class="label tag-prazo-ok">No prazo</span><br>16/03/2026</td>
                             <td>R$ 350,00</td>
                             <td>Aberto</td>
                             <td style="text-align: center;">
-                                <a href="#" class="btn btn-mini" title="Ver"><i class="fa-solid fa-eye"></i></a>
-                                <a href="#" class="btn btn-info btn-mini" title="Editar"><i class="fa-solid fa-pencil"></i></a>
+                                <a href="#" class="btn btn-mini btn-info"><i class="fa-solid fa-eye"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="label tag-status-pendente">Pendente</span><br>#3031</td>
+                            <td><span class="label tag-prio-alta">Alta prioridade</span><br>JONATHAN DA SILVA</td>
+                            <td>12/03/2026 14:42</td>
+                            <td><span class="label tag-prazo-vencido">Vencido</span><br>12/03/2026</td>
+                            <td>R$ 349,20</td>
+                            <td>Entrada</td>
+                            <td style="text-align: center;">
+                                <a href="#" class="btn btn-mini btn-info"><i class="fa-solid fa-pencil"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="label tag-status-concluido">Concluído</span><br>#3029</td>
+                            <td><span class="label tag-prio-baixa">Baixa prioridade</span><br>MARCIN BRENO</td>
+                            <td>12/03/2026 12:45</td>
+                            <td><span class="label tag-prazo-ok">No prazo</span><br>20/03/2026</td>
+                            <td>R$ 0,00</td>
+                            <td>Entrada</td>
+                            <td style="text-align: center;">
+                                <a href="#" class="btn btn-mini btn-info"><i class="fa-solid fa-eye"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td><span class="label tag-status-cancelado">Cancelado</span><br>#3025</td>
+                            <td><span class="label tag-prio-media">Média prioridade</span><br>GUILHERME ALMEIDA</td>
+                            <td>12/03/2026 09:27</td>
+                            <td><span class="label tag-prazo-limite">No Limite</span><br>13/03/2026</td>
+                            <td>R$ 0,00</td>
+                            <td>Aberto</td>
+                            <td style="text-align: center;">
+                                <a href="#" class="btn btn-mini btn-info"><i class="fa-solid fa-eye"></i></a>
                             </td>
                         </tr>
                     </tbody>
@@ -224,18 +250,13 @@
 
 <script>
     $(document).ready(function(){
-        // Garante que o item marcado como 'open' no HTML carregue aberto suavemente
         $('.submenu.open ul').show();
-
         $('.submenu > a').off('click').on('click', function(e){
             e.preventDefault();
             var $li = $(this).parent('li');
             var $submenu = $li.find('ul');
-            
             if($li.hasClass('open')) {
-                $submenu.slideUp(300, function(){
-                    $li.removeClass('open');
-                });
+                $submenu.slideUp(300, function(){ $li.removeClass('open'); });
             } else {
                 $li.addClass('open');
                 $submenu.stop(true, true).slideDown(300);
