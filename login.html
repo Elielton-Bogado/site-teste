@@ -211,7 +211,7 @@
         <p>&copy; <span id="anoAtual"></span> - Sistema de Gestão</p>
     </div>
 
-    <script>
+   <script>
     // SCRIPT PARA O ANO ATUAL AUTOMÁTICO
     document.getElementById("anoAtual").textContent = new Date().getFullYear();
 
@@ -246,6 +246,11 @@
             data: { email: email, senha: senha },
             success: function(resposta) {
                 if (resposta.trim() === "success") {
+                    // ==========================================
+                    // TRAVA DE SEGURANÇA: CRIA A SESSÃO NO NAVEGADOR
+                    localStorage.setItem("inforos_logado", "true");
+                    // ==========================================
+                    
                     window.location.href = "index.html"; 
                 } else {
                     errorMsg.fadeIn();
