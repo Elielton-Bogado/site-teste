@@ -22,6 +22,7 @@
             overflow: hidden;
         }
 
+        /* BOLAS DECORATIVAS NAS QUINAS */
         .corner-ball {
             position: absolute;
             background: rgba(255, 255, 255, 0.02);
@@ -33,6 +34,7 @@
         .ball-top-right { width: 550px; height: 550px; top: -200px; right: -150px; }
         .ball-bottom-left { width: 450px; height: 450px; bottom: -150px; left: -150px; }
 
+        /* CARD DE LOGIN COM BORDAS SUAVES E AZUL ESCURO BRILHANTE */
         .login-card {
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(20px);
@@ -84,6 +86,7 @@
             font-size: 16px;
         }
 
+        /* BOTÃO AUTENTICAR EM AZUL */
         .btn-login {
             width: 100%;
             padding: 16px;
@@ -101,8 +104,15 @@
             box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
         }
 
+        .btn-login:hover { 
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(39, 169, 227, 0.4);
+            filter: brightness(1.1);
+        }
+
         .btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
 
+        /* RODAPÉ E BADGE EM AZUL */
         .footer-info {
             position: absolute;
             bottom: 30px;
@@ -146,18 +156,18 @@
 
         <form id="formLogin">
             <div class="input-group">
-                <label>E-mail</label>
+                <label for="email">E-mail</label>
                 <div class="input-wrapper">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="email" id="email" placeholder="gestor@inforos.com" required>
+                    <input type="email" id="email" placeholder="gestor@inforos.com" autocomplete="username" required>
                 </div>
             </div>
 
             <div class="input-group">
-                <label>Senha</label>
+                <label for="senha">Senha</label>
                 <div class="input-wrapper">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" id="senha" placeholder="••••••••" required>
+                    <input type="password" id="senha" placeholder="••••••••" autocomplete="current-password" required>
                 </div>
             </div>
 
@@ -189,14 +199,11 @@
 
             fetch(urlScript, {
                 method: 'POST',
-                mode: 'no-cors', // Importante para evitar erros de CORS no redirecionamento do Google
+                mode: 'no-cors', // Necessário para enviar dados para o Google Sheets sem erro de segurança
                 body: JSON.stringify(dados)
             })
             .then(() => {
-                // Como o fetch com 'no-cors' não lê a resposta JSON, 
-                // para fins de teste simples via Sheets sem servidor complexo:
-                // Vamos simular o redirecionamento.
-                // Se precisar de validação REAL de senha, use um servidor PHP.
+                // Redireciona para a página inicial do seu site
                 window.location.href = "index.html"; 
             })
             .catch(err => {
