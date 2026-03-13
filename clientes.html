@@ -15,7 +15,7 @@
         body { background-color: #2e363f !important; }
         #content { min-height: 90vh; padding-bottom: 50px; }
 
-        /* MENU LATERAL COMPLETO E ESTILIZADO */
+        /* MENU LATERAL - RESTAURAÇÃO TOTAL */
         #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
         #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
         #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
@@ -26,31 +26,34 @@
 
         /* BOTÃO WHATSAPP NAS AÇÕES */
         .wa-button-action { 
-            background-color: #25d366; 
-            color: white !important; 
-            border-radius: 4px;
-            padding: 2px 6px; 
-            display: inline-block;
-            transition: 0.3s;
-            border: none;
-            cursor: pointer;
-            font-size: 11px;
-            line-height: 18px;
+            background-color: #25d366; color: white !important; border-radius: 4px;
+            padding: 2px 6px; display: inline-block; transition: 0.3s; border: none; cursor: pointer;
+            font-size: 11px; line-height: 18px;
         }
         .wa-button-action:hover { background-color: #128c7e; }
-        
-        /* CENTRALIZAÇÃO DO MODAL */
+
+        /* MODAL ESTILO WHATSAPP - AJUSTE DE POSICIONAMENTO */
         #modal-whatsapp {
-            position: fixed;
-            top: 50% !important;
-            left: 50% !important;
-            transform: translate(-50%, -50%) !important;
-            margin: 0 !important;
-            width: 90%;
-            max-width: 500px;
+            position: fixed; top: 50% !important; left: 50% !important;
+            transform: translate(-50%, -50%) !important; margin: 0 !important;
+            width: 500px !important; border-radius: 12px; overflow: hidden; border: none;
+            z-index: 9999;
         }
-        .modal-wa-body { text-align: center; padding: 30px; }
-        .wa-icon-large { font-size: 60px; color: #25d366; margin-bottom: 20px; }
+        .wa-modal-header { background-color: #075e54; color: white; padding: 15px; display: flex; align-items: center; justify-content: space-between; }
+        .wa-modal-header .user-info { display: flex; align-items: center; gap: 10px; text-align: left; }
+        .wa-status-bar { background-color: #fff3cd; color: #856404; padding: 8px; font-size: 11px; text-align: center; border-bottom: 1px solid #ffeeba; }
+        .wa-chat-body { 
+            background-color: #e5ddd5; 
+            background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); 
+            padding: 20px; max-height: 200px; overflow-y: auto; text-align: left;
+        }
+        .wa-bubble {
+            background-color: #dcf8c6; padding: 10px; border-radius: 8px;
+            max-width: 85%; margin-left: auto; position: relative; font-size: 13px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); color: #333;
+        }
+        .wa-editor-area { background: #fff; padding: 15px; border-top: 1px solid #eee; }
+        .wa-textarea { width: 100%; border: 1px solid #ddd; border-radius: 5px; padding: 10px; font-size: 13px; resize: none; min-height: 70px; box-sizing: border-box; }
+        .wa-modal-footer { background: #f0f0f0; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
     </style>
 </head>
 <body>
@@ -157,22 +160,22 @@
                                     <th>Nome</th>
                                     <th>CPF/CNPJ</th>
                                     <th>Telefone</th>
-                                    <th style="width: 20%">Ações</th>
+                                    <th style="width: 25%">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
-                                    <td>Elielton Bogado</td>
+                                    <td>1743</td>
+                                    <td>JONATHAN DA SILVA</td>
                                     <td>000.000.000-00</td>
-                                    <td>(67) 99999-9999</td>
+                                    <td>(67) 99834-9531</td>
                                     <td style="text-align: center;">
-                                        <button class="wa-button-action tip-top" title="WhatsApp" onclick="abrirModalWaha('67999999999', 'Olá, tudo bem?')">
+                                        <button class="wa-button-action tip-top" title="WhatsApp" onclick="abrirChatWA('JONATHAN DA SILVA', '67998349531')">
                                             <i class="fa-brands fa-whatsapp"></i>
                                         </button>
-                                        <a href="#" class="btn btn-info btn-mini"><i class="fa-solid fa-eye"></i></a>
-                                        <a href="#" class="btn btn-success btn-mini"><i class="fa-solid fa-pencil"></i></a>
-                                        <a href="#" class="btn btn-danger btn-mini"><i class="fa-solid fa-trash-can"></i></a>
+                                        <a href="#" class="btn btn-info btn-mini tip-top" title="Visualizar"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="#" class="btn btn-success btn-mini tip-top" title="Editar"><i class="fa-solid fa-pencil"></i></a>
+                                        <a href="#" class="btn btn-danger btn-mini tip-top" title="Excluir"><i class="fa-solid fa-trash-can"></i></a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -185,21 +188,33 @@
 </div>
 
 <div id="modal-whatsapp" class="modal hide fade" tabindex="-1" role="dialog">
-    <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h3>Integração WhatsApp - InforOS</h3>
+    <div class="wa-modal-header">
+        <div class="user-info">
+            <i class="fa-brands fa-whatsapp" style="font-size: 24px;"></i>
+            <div>
+                <strong id="wa-modal-label-nome">NOME DO CLIENTE</strong><br>
+                <small id="wa-modal-label-fone">(00) 00000-0000</small>
+            </div>
+        </div>
+        <button type="button" class="close" data-dismiss="modal" style="color: white; opacity: 1;">×</button>
     </div>
-    <div class="modal-body modal-wa-body">
-        <i class="fa-brands fa-whatsapp wa-icon-large"></i>
-        <h4>Conectar ao WhatsApp Web</h4>
-        <p>Para enviar mensagens automáticas, certifique-se de que o sistema está conectado ao seu dispositivo.</p>
-        <div class="alert alert-info">
-            <strong>Atenção:</strong> O navegador abrirá uma nova aba para processar o envio. Certifique-se de que o WhatsApp esteja aberto e logado no seu navegador.
+    <div class="wa-status-bar">
+        <i class="fa-solid fa-circle-exclamation"></i> Desconectado — conecte nas configurações ou use o WhatsApp Web
+    </div>
+    <div class="wa-chat-body">
+        <div class="wa-bubble">
+            <span id="wa-preview-text">Olá, tudo bem?</span>
         </div>
     </div>
-    <div class="modal-footer">
-        <button class="btn" data-dismiss="modal">Cancelar</button>
-        <button class="btn btn-success" id="confirmSendWpp">Confirmar e Enviar</button>
+    <div class="wa-editor-area">
+        <textarea id="wa-message-editor" class="wa-textarea"></textarea>
+    </div>
+    <div class="wa-modal-footer">
+        <button class="btn btn-small" data-dismiss="modal">Fechar</button>
+        <div>
+            <button class="btn btn-small btn-info" id="btn-wa-web">WhatsApp Web</button>
+            <button class="btn btn-small btn-success" id="btn-wa-send" style="background-color: #25d366; border: none;">Enviar</button>
+        </div>
     </div>
 </div>
 
@@ -209,7 +224,18 @@
 <script src="https://teste.inforos.online/assets/js/bootstrap.min.js"></script>
 
 <script>
-    var currentWAData = { phone: '', msg: '' };
+    var currentWAData = { phone: '', name: '' };
+
+    function abrirChatWA(nome, fone) {
+        currentWAData.phone = fone.replace(/\D/g, '');
+        currentWAData.name = nome;
+        $('#wa-modal-label-nome').text(nome.toUpperCase());
+        $('#wa-modal-label-fone').text(fone);
+        var msg = "Opa, *" + nome + "*, tudo bem? Aqui quem fala é Elielton.\n\nSegue o link para acesso ao portal do cliente:\nhttps://teste.inforos.online/index.php/mine";
+        $('#wa-message-editor').val(msg);
+        $('#wa-preview-text').html(msg.replace(/\n/g, '<br>'));
+        $('#modal-whatsapp').modal('show');
+    }
 
     $(document).ready(function(){
         $('#anoAtual').text(new Date().getFullYear());
@@ -229,18 +255,18 @@
             }
         });
 
-        $('#confirmSendWpp').click(function(){
-            var url = "https://api.whatsapp.com/send?phone=55" + currentWAData.phone + "&text=" + encodeURIComponent(currentWAData.msg);
-            window.open(url, '_blank');
-            $('#modal-whatsapp').modal('hide');
+        $('#wa-message-editor').on('input', function(){
+            $('#wa-preview-text').html($(this).val().replace(/\n/g, '<br>'));
+        });
+
+        $('#btn-wa-send').click(function(){
+            window.open("https://api.whatsapp.com/send?phone=55" + currentWAData.phone + "&text=" + encodeURIComponent($('#wa-message-editor').val()), '_blank');
+        });
+
+        $('#btn-wa-web').click(function(){
+            window.open("https://web.whatsapp.com/send?phone=55" + currentWAData.phone + "&text=" + encodeURIComponent($('#wa-message-editor').val()), '_blank');
         });
     });
-
-    function abrirModalWaha(celular, mensagem) {
-        currentWAData.phone = celular.replace(/\D/g, '');
-        currentWAData.msg = mensagem;
-        $('#modal-whatsapp').modal('show');
-    }
 </script>
 </body>
 </html>
