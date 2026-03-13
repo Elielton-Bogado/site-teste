@@ -15,16 +15,19 @@
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
             display: flex;
+            flex-direction: column; /* Organiza os itens em coluna */
             align-items: center;
-            justify-content: center;
+            justify-content: center; /* Mantém o menu sempre centralizado */
             background: #0d1117; 
             position: relative;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
+            padding: 20px 0; /* Espaço de segurança para o zoom */
         }
 
         /* BOLAS DECORATIVAS NAS QUINAS */
         .corner-ball {
-            position: absolute;
+            position: fixed; /* Mantém as bolas fixas no fundo */
             background: rgba(255, 255, 255, 0.02);
             border-radius: 50%;
             z-index: 1;
@@ -39,14 +42,15 @@
             background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 4px solid #1e40af; /* Azul Escuro Robusto */
-            border-radius: 40px; /* Suavidade elegante */
+            border: 4px solid #1e40af; 
+            border-radius: 40px; 
             padding: 50px 40px;
             width: 100%;
             max-width: 410px;
             position: relative;
             z-index: 10;
             box-shadow: 0 0 50px rgba(30, 64, 175, 0.3), 0 20px 40px rgba(0, 0, 0, 0.6); 
+            margin: auto 0; /* Garante a centralização vertical perfeita */
         }
 
         .logo-container { text-align: center; margin-bottom: 30px; }
@@ -112,15 +116,15 @@
 
         .btn-login:disabled { opacity: 0.6; cursor: not-allowed; }
 
-        /* RODAPÉ E BADGE */
+        /* RODAPÉ AJUSTADO PARA SER DINÂMICO E NÃO SOBREPOR */
         .footer-info {
-            position: absolute;
-            bottom: 30px;
             width: 100%;
             text-align: center;
             color: rgba(255, 255, 255, 0.25);
             font-size: 11px;
             z-index: 10;
+            padding-bottom: 30px;
+            margin-top: 20px; /* Distância fixa mínima do menu principal */
         }
 
         .badge-teste {
@@ -194,7 +198,6 @@
                 senha: $('#senha').val()
             };
 
-            // URL DO SEU GOOGLE APPS SCRIPT ATUALIZADA
             const urlScript = "https://script.google.com/macros/s/AKfycbwzgsCD8tS39phDv77ISh7qMyY53m-KGZNt733KGbhu3zYLfTZmGlv7XLgGNzWynBjL/exec";
 
             fetch(urlScript, {
@@ -203,7 +206,6 @@
                 body: JSON.stringify(dados)
             })
             .then(() => {
-                // Redireciona para a sua página inicial
                 window.location.href = "index.html"; 
             })
             .catch(err => {
