@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
+    <script>
+        // TRAVA DE SEGURANÇA: Redireciona se não estiver logado
+        if (localStorage.getItem("inforos_logado") !== "true") {
+            window.location.href = "login.html";
+        }
+    </script>
     <meta charset="UTF-8">
     <title>InforOS | Clientes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +21,7 @@
         body { background-color: #2e363f !important; }
         #content { min-height: 90vh; padding-bottom: 50px; }
 
-        /* MENU LATERAL - RESTAURAÇÃO TOTAL */
+        /* MENU LATERAL - PRESERVADO */
         #sidebar ul li a { transition: all 0.2s ease; border-left: 4px solid transparent; }
         #sidebar ul li a:hover { padding-left: 30px !important; background: #27a9e3 !important; color: #fff !important; }
         #sidebar ul li.active a { border-left: 4px solid #27a9e3; background: #2e363f; }
@@ -24,7 +30,7 @@
         #sidebar li.submenu ul li a { padding: 10px 15px 10px 45px !important; font-size: 12px; color: #88929b !important; background: transparent !important; border-left: none !important; }
         .label-submenu { background-color: #ff5b57 !important; padding: 2px 5px; border-radius: 4px; float: right; margin-right: 15px; margin-top: 2px; color: white; font-size: 10px; }
 
-        /* BOTÃO WHATSAPP NAS AÇÕES */
+        /* WHATSAPP ESTILO */
         .wa-button-action { 
             background-color: #25d366; color: white !important; border-radius: 4px;
             padding: 2px 6px; display: inline-block; transition: 0.3s; border: none; cursor: pointer;
@@ -32,7 +38,6 @@
         }
         .wa-button-action:hover { background-color: #128c7e; }
 
-        /* MODAL ESTILO WHATSAPP - AJUSTE DE POSICIONAMENTO */
         #modal-whatsapp {
             position: fixed; top: 50% !important; left: 50% !important;
             transform: translate(-50%, -50%) !important; margin: 0 !important;
@@ -40,17 +45,10 @@
             z-index: 9999;
         }
         .wa-modal-header { background-color: #075e54; color: white; padding: 15px; display: flex; align-items: center; justify-content: space-between; }
-        .wa-modal-header .user-info { display: flex; align-items: center; gap: 10px; text-align: left; }
+        .user-info { display: flex; align-items: center; gap: 10px; text-align: left; }
         .wa-status-bar { background-color: #fff3cd; color: #856404; padding: 8px; font-size: 11px; text-align: center; border-bottom: 1px solid #ffeeba; }
-        .wa-chat-body { 
-            background-color: #e5ddd5; 
-            background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); 
-            padding: 20px; max-height: 200px; overflow-y: auto; text-align: left;
-        }
-        .wa-bubble {
-            background-color: #dcf8c6; padding: 10px; border-radius: 8px;
-            max-width: 85%; margin-left: auto; position: relative; font-size: 13px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); color: #333;
-        }
+        .wa-chat-body { background-color: #e5ddd5; background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png'); padding: 20px; max-height: 200px; overflow-y: auto; text-align: left; }
+        .wa-bubble { background-color: #dcf8c6; padding: 10px; border-radius: 8px; max-width: 85%; margin-left: auto; position: relative; font-size: 13px; color: #333; }
         .wa-editor-area { background: #fff; padding: 15px; border-top: 1px solid #eee; }
         .wa-textarea { width: 100%; border: 1px solid #ddd; border-radius: 5px; padding: 10px; font-size: 13px; resize: none; min-height: 70px; box-sizing: border-box; }
         .wa-modal-footer { background: #f0f0f0; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
@@ -60,18 +58,18 @@
 
 <div id="header"><h1><a href="index.html">InforOS</a></h1></div>
 
-<div id="user-nav" class="navbar navbar-inverse">
-    <ul class="nav">
-        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
-        <li><a href="login.html"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
-    </ul>
-</div>
-
 <div id="search">
     <form action="#">
         <input type="text" placeholder="Pesquisar no sistema..."/>
         <button type="submit" class="tip-bottom" title="Pesquisar"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
+</div>
+
+<div id="user-nav" class="navbar navbar-inverse">
+    <ul class="nav">
+        <li><a href="index.html"><i class="fa-solid fa-house"></i> <span class="text">Início</span></a></li>
+        <li><a href="login.html" id="linkSair"><i class="fa-solid fa-power-off"></i> <span class="text">Sair</span></a></li>
+    </ul>
 </div>
 
 <div id="sidebar">
@@ -160,7 +158,8 @@
                                     <th>Nome</th>
                                     <th>CPF/CNPJ</th>
                                     <th>Telefone</th>
-                                    <th style="width: 25%">Ações</th>
+                                    <th>Email</th>
+                                    <th style="width: 20%">Ações</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -169,6 +168,7 @@
                                     <td>JONATHAN DA SILVA</td>
                                     <td>000.000.000-00</td>
                                     <td>(67) 99834-9531</td>
+                                    <td>jonathan@email.com</td>
                                     <td style="text-align: center;">
                                         <button class="wa-button-action tip-top" title="WhatsApp" onclick="abrirChatWA('JONATHAN DA SILVA', '67998349531')">
                                             <i class="fa-brands fa-whatsapp"></i>
@@ -199,7 +199,7 @@
         <button type="button" class="close" data-dismiss="modal" style="color: white; opacity: 1;">×</button>
     </div>
     <div class="wa-status-bar">
-        <i class="fa-solid fa-circle-exclamation"></i> Desconectado — conecte nas configurações ou use o WhatsApp Web
+        <i class="fa-solid fa-circle-exclamation"></i> Desconectado — use o WhatsApp Web
     </div>
     <div class="wa-chat-body">
         <div class="wa-bubble">
@@ -240,6 +240,12 @@
     $(document).ready(function(){
         $('#anoAtual').text(new Date().getFullYear());
 
+        // LOGOUT
+        $('#linkSair').on('click', function() {
+            localStorage.removeItem("inforos_logado");
+        });
+
+        // MENU LATERAL
         $('.submenu > a').click(function(e){
             e.preventDefault();
             var submenu = $(this).siblings('ul');
@@ -248,8 +254,6 @@
                 submenu.slideUp(250);
                 li.removeClass('open');
             } else {
-                $('#sidebar li.submenu.open ul').slideUp(250);
-                $('#sidebar li.submenu.open').removeClass('open');
                 submenu.slideDown(250);
                 li.addClass('open');
             }
